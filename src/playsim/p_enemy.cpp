@@ -1716,17 +1716,18 @@ int P_LookForPlayers (AActor *actor, INTBOOL allaround, FLookExParams *params)
 
 		// [RC] Well, let's let special monsters with this flag active be able to see
 		// the player then, eh?
+		// [XANE] For Magical Mary 1, enemies are way more oblivious to "ninjas".
 		if(!(actor->flags6 & MF6_SEEINVISIBLE)) 
 		{
 			if ((player->mo->flags & MF_SHADOW && !(actor->Level->i_compatflags & COMPATF_INVISIBILITY)) ||
 				player->mo->flags3 & MF3_GHOST)
 			{
-				if (player->mo->Distance2D (actor) > 128 && player->mo->Vel.XY().LengthSquared() < 5*5)
-				{ // Player is sneaking - can't detect
+				if (player->mo->Distance2D(actor) > 42 && player->mo->Vel.XY().LengthSquared() < 150)
+				{ // Player is sneaking or walking - can't detect!
 					continue;
 				}
-				if (pr_lookforplayers() < 225)
-				{ // Player isn't sneaking, but still didn't detect
+				if (pr_lookforplayers() < 144)
+				{ // Player isn't "sneaking", but this enemy still didn't detect them!
 					continue;
 				}
 			}
@@ -2905,8 +2906,8 @@ void A_Face(AActor *self, AActor *other, DAngle max_turn, DAngle max_pitch, DAng
 	// This will never work well if the turn angle is limited.
 	if (max_turn == 0 && (self->Angles.Yaw == other_angle) && other->flags & MF_SHADOW && !(self->flags6 & MF6_SEEINVISIBLE) )
     {
-		self->Angles.Yaw += pr_facetarget.Random2() * (45 / 256.);
-    }
+		self->Angles.Yaw += pr_facetarget.Random2() * (13 / 256.);
+	}
 }
 
 void A_FaceTarget(AActor *self)

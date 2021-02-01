@@ -317,6 +317,7 @@ void InitModels()
 		FSpriteModelFrame smf;
 		memset(&smf, 0, sizeof(smf));
 		smf.isVoxel = true;
+		smf.flags |= MDL_USEACTORPITCH | MDL_USEACTORROLL;	//[XANE]Brute-force these flags on for voxel models. (SOMEHOW THIS WORKS!)
 		smf.modelIDs[1] = smf.modelIDs[2] = smf.modelIDs[3] = -1;
 		smf.modelIDs[0] = VoxelDefs[i]->Voxel->VoxelIndex;
 		smf.skinIDs[0] = md->GetPaletteTexture();

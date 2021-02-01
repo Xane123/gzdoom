@@ -142,7 +142,7 @@ void MapLoader::SpawnLinePortal(line_t* line)
 			if (port->mType == PORTT_INTERACTIVE && port->mAlign != PORG_ABSOLUTE)
 			{
 				// Due to the way z is often handled, these pose a major issue for parts of the code that needs to transparently handle interactive portals.
-				Printf(TEXTCOLOR_RED "Warning: z-offsetting not allowed for interactive portals. Changing line %d to teleport-portal!\n", line->Index());
+				Printf(TEXTCOLOR_RED "Warning: z-offsetting not allowed for interactive portals. Changing line %d to teleport-portal!\n" TEXTCOLOR_YELLOW "Make sure both sides have unique, ungrouped sectors!\n", line->Index());
 				port->mType = PORTT_TELEPORT;
 			}
 		}

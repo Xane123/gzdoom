@@ -98,6 +98,7 @@
 #else
 //#define INGAME_PRIORITY_CLASS	HIGH_PRIORITY_CLASS
 #define INGAME_PRIORITY_CLASS	NORMAL_PRIORITY_CLASS
+#define INGAME_PRIORITY_CLASS_HIGH	ABOVE_NORMAL_PRIORITY_CLASS
 #endif
 
 FJoystickCollection *JoyDevices[NUM_JOYDEVICES];
@@ -139,6 +140,7 @@ int BlockMouseMove;
 
 static bool EventHandlerResultForNativeMouse;
 
+CVAR(Bool, i_highpriority, false, CVAR_ARCHIVE)
 
 CVAR (Bool, i_soundinbackground, false, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
 CVAR (Bool, k_allowfullscreentoggle, true, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
@@ -502,7 +504,8 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		AppActive = wParam == TRUE;
 		if (wParam)
 		{
-			SetPriorityClass (GetCurrentProcess (), INGAME_PRIORITY_CLASS);
+			if (!i_highpriority) SetPriorityClass(GetCurrentProcess(), INGAME_PRIORITY_CLASS);
+			else  SetPriorityClass(GetCurrentProcess(), INGAME_PRIORITY_CLASS_HIGH);
 		}
 		else if (!noidle && !(sysCallbacks.NetGame && sysCallbacks.NetGame()))
 		{

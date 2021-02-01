@@ -302,6 +302,8 @@ void level_info_t::Reset()
 	skyrotatevector = FVector3(0, 0, 1);
 	skyrotatevector2 = FVector3(0, 0, 1);
 
+	partnum = 0;
+	songid = 0;
 }
 
 
@@ -1540,6 +1542,26 @@ DEFINE_MAP_OPTION(loadacs, false)
 	info->acsName = parse.sc.String;
 }
 
+DEFINE_MAP_OPTION(partnum, true)
+{	//[XANE]Level part number, for levels that come in multple parts.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->partnum = parse.sc.Number;
+}
+
+DEFINE_MAP_OPTION(songid, true)
+{	//[XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->partnum = parse.sc.Number;
+}
+
+DEFINE_MAP_OPTION(foliagecolor, true)
+{	//[XANE]Color used by tree leaf clusters and grass.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->partnum = parse.sc.Number;
+}
 
 //==========================================================================
 //

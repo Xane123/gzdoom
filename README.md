@@ -1,22 +1,12 @@
-# Welcome to GZDoom!
-
-[![Build Status](https://github.com/coelckers/gzdoom/workflows/Continuous%20Integration/badge.svg)](https://github.com/coelckers/gzdoom/actions?query=workflow%3A%22Continuous+Integration%22)
-
-## GZDoom is a modder-friendly OpenGL and Vulkan source port based on the DOOM engine
-
-Copyright (c) 1998-2021 ZDoom + GZDoom teams, and contributors
-
-Doom Source (c) 1997 id Software, Raven Software, and contributors
-
-Please see license files for individual contributor licenses
-
-Special thanks to Coraline of the EDGE team for allowing us to use her [README.md](https://github.com/3dfxdev/EDGE/blob/master/README.md) as a template for this one.
-
-### Licensed under the GPL v3
-##### https://www.gnu.org/licenses/quick-guide-gplv3.en.html
----
-
-## How to build GZDoom
-
-To build GZDoom, please see the [wiki](https://zdoom.org/wiki/) and see the "Programmer's Corner" on the bottom-right corner of the page to build for your platform.
-
+# Magical Mary 1: Redthorn's Family Ransom
+Magical Mary 1 (abbreviated MM1) is a first-person platforming game which uses a modified version of GZDoom. This is the source code, released as per the GPLv3.
+## License
+Magical Mary 1's code is licensed under the GNU General Public License version 3, as with what it was derived from.
+## Download & Setup
+* [![Windows XP+ download badge](https://img.shields.io/badge/Windows-Download-green.svg)](https://www.dropbox.com/s/71njsjj8sp11ein/engine-windows.zip?dl=0)
+* [![Ubuntu download badge](https://img.shields.io/badge/Ubuntu-Download-orange.svg)](https://www.dropbox.com/s/9fd00no36mfw361/engine-ubuntu.zip?dl=0)
+* Don't forget to download the [game data](https://www.dropbox.com/s/5dgmfxa3ck2fgdz/game-data.zip?dl=0) as well, or the game won't start up!
+## Credits (incomplete)
+* id Software for Doom and its source code
+* Randy Heit for ZDoom
+* Christoph Oelckers (Graf Zahl) and all other contributors for GZDoom

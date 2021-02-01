@@ -1688,6 +1688,9 @@ void FLevelLocals::Init()
 	flags2 |= info->flags2;
 	flags3 |= info->flags3;
 	levelnum = info->levelnum;
+	partnum = info->partnum;			//[XANE]Level part number, for levels that come in multiple parts.
+	songid = info->songid;				//[XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
+	foliagecolor = info->foliagecolor;	//[XANE]Color used by tree leaf clusters and grass.
 	Music = info->Music;
 	musicorder = info->musicorder;
 	MusicVolume = 1.f;

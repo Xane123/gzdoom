@@ -1260,12 +1260,12 @@ class PlayerPawn : Actor
 			sm *= Speed / 256;
 
 			// When crouching, speed and bobbing have to be reduced
-			if (CanCrouch() && player.crouchfactor != 1)
+			/*if (CanCrouch() && player.crouchfactor != 1)
 			{
 				fm *= player.crouchfactor;
 				sm *= player.crouchfactor;
 				bobfactor *= player.crouchfactor;
-			}
+			}*/
 
 			forwardmove = fm * movefactor * (35 / TICRATE);
 			sidemove = sm * movefactor * (35 / TICRATE);

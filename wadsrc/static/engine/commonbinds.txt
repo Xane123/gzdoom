@@ -1,4 +1,6 @@
-// These bindings are valid for all configurations
+/* Default keybindings for all games */
+
+doublebind w +mc_run
 
 ` toggleconsole
 1 "slot 1"
@@ -11,20 +13,31 @@
 8 "slot 8"
 9 "slot 9"
 0 "slot 0"
-[ invprev
-] invnext
-mwheelleft invprev
-mwheelright invnext
-enter invuse
-- sizedown
-= sizeup
+[ "screenblocks 10"
+] "screenblocks 11"
+mwheelup invnext
+mwheeldown invprev
+q +attack
+e +altattack
 shift +speed
-mouse1 +attack
-capslock "toggle cl_run"
+r +use
+w +forward
+s +back
+d +moveright
+a +moveleft
+space +jump
+m +user4
+. +user2
+/ +user3
+uparrow invuse
+downarrow invuse
+leftarrow invprev
+rightarrow invnext
+capslock chase
 f1 menu_help
 f2 menu_save
 f3 menu_load
-f4 menu_options
+f4 openmenu ZDoom_OptionsMenu
 f5 menu_display
 f6 quicksave
 f7 menu_endgame
@@ -35,44 +48,53 @@ f10 menu_quit
 tab togglemap
 pause pause
 sysrq screenshot
-t messagemode
-\ +showscores
+enter messagemode
 f12 spynext
-mwheeldown weapnext
-mwheelup weapprev
+mwheelleft weapprev
+mwheelright weapnext
 
-// Originally just for Heretic, Hexen, and Strife.
-// I can't see why they shouldn't be for Doom or Chex either.
-pgup +moveup
-ins +movedown
-home land
-pgdn +lookup
-del +lookdown
-end centerview
+//Mouse
+mouse1 +attack
+mouse2 +jump
+mouse3 +altattack
+mouse4 +user2
 
-// Xbox 360 / PS2 controllers
-pad_a +use
-pad_y +jump
+// Logitech Dual Action
+joy2 +jump
+joy3 invuse
+joy1 +use
+joy4 weapnext
+joy8 +attack
+joy7 +altattack
+joy5 +user2
+joy6 +user3
+pov1left invprev
+pov1right invnext
+pov1down weapnext
+pov1up weapprev
+joy10 menu_main
+joy9 togglemap
+
+// Xbox / PlayStation controllers
+pad_a +jump
+pad_b invuse
+pad_x +use
+pad_y weapnext
 rtrigger +attack
 ltrigger +altattack
-lshoulder weapprev
-rshoulder weapnext
+lshoulder +user2
+rshoulder +user3
 dpadleft invprev
 dpadright invnext
-dpaddown invuse
-dpadup togglemap
-pad_start pause
-pad_back menu_main
-lthumb crouch
-
+dpaddown weapnext
+dpadup weapprev
+pad_start menu_main
+pad_back togglemap
 
 /* Default automap bindings */
-mapbind f am_togglefollow
-mapbind g am_togglegrid
-mapbind p am_toggletexture
 mapbind m am_setmark
 mapbind c am_clearmarks
-mapbind 0 am_gobig
+mapbind kp0 am_gobig
 mapbind rightarrow +am_panright
 mapbind leftarrow +am_panleft
 mapbind uparrow +am_panup
@@ -81,5 +103,3 @@ mapbind - +am_zoomout
 mapbind = +am_zoomin
 mapbind kp- +am_zoomout
 mapbind kp+ +am_zoomin
-mapbind mwheelup "am_zoom 1.2"
-mapbind mwheeldown "am_zoom -1.2"

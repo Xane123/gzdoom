@@ -12,25 +12,9 @@ DEFAULTLISTMENU
 {
 	Font "BigFont", "Untranslated"
 	LineSpacing 20
-	IfGame(Doom)
-	{
-		Selector "M_SKULL1", -32, -5
-		Font "BigUpper", "Red"
-		LineSpacing 18
-	}
-	IfGame(Chex)
-	{
-		Selector "M_SKULL1", -32, -5
-		Font "BigFont", "Green"
-	}
-	IfGame(Strife)
-	{
-		Selector "M_CURS1", -28, -5
-	}
-	IfGame(Heretic, Hexen)
-	{
-		Selector "M_SLCTR1", -28, -1
-	}
+	Selector "M_CURS01", -48, -5	//ORIGINAL X: -32
+	Font "BigUpper", "Purple"
+	LineSpacing 18
 }
 
 //-------------------------------------------------------------------------------------------
@@ -41,66 +25,33 @@ DEFAULTLISTMENU
 
 LISTMENU "MainMenu"
 {
-	IfGame(Doom, Chex)
+	LineSpacing 16	// This must account for some single-graphic replacements, so it cannot be widened
+	StaticPatch 94, -22, "M_LOGO"
+	//StaticPatch 106, -22, "M_LOGO"
+	Position 97, 72
+	IfOption(ReadThis)
 	{
-		LineSpacing 16	// This must account for some single-graphic replacements, so it cannot be widened
-		StaticPatch 94, 2, "M_DOOM"
-		Position 97, 72
-		IfOption(ReadThis)
-		{
-			Position 97, 64
-		}
+		Position 97, 64
 	}
-	IfGame(Strife)
+	
+	PatchItem "M_NGAME", "n", "PlayerclassMenu"
+	ifOption(SwapMenu)
 	{
-		StaticPatch 84, 2, "M_STRIFE"
-		Position 97, 45
+		PatchItem "M_LOADG", "l", "LoadGameMenu", 0
+		PatchItem "M_SAVEG", "s", "SaveGameMenu",0
+		PatchItem "M_OPTION","o", "OptionsMenu", 0
 	}
-	IfGame(Heretic)
+	else
 	{
-		StaticPatch 88, 0, "M_HTIC"
-		StaticPatch 40, 10, "M_SKL01"
-		StaticPatch 232, 10, "M_SKL00"
-		Position 110, 56
+		PatchItem "M_OPTION","o", "OptionsMenu", 0
+		PatchItem "M_LOADG", "l", "LoadGameMenu", 0
+		PatchItem "M_SAVEG", "s", "SaveGameMenu", 0
 	}
-	IfGame(Hexen)
+	ifOption(ReadThis)
 	{
-		StaticPatch 88, 0, "M_HTIC"
-		StaticPatch 37, 80, "FBULB0"
-		StaticPatch 278, 80, "FBULA0"
-		Position 110, 56
+		PatchItem "M_RDTHIS","r", "ReadThisMenu", 0
 	}
-
-	IfGame(Doom, Strife, Chex)
-	{
-		PatchItem "M_NGAME", "n", "PlayerclassMenu"
-		ifOption(SwapMenu)
-		{
-			PatchItem "M_LOADG", "l", "LoadGameMenu", 0
-			PatchItem "M_SAVEG", "s", "SaveGameMenu",0
-			PatchItem "M_OPTION","o", "OptionsMenu", 0
-		}
-		else
-		{
-			PatchItem "M_OPTION","o", "OptionsMenu", 0
-			PatchItem "M_LOADG", "l", "LoadGameMenu", 0
-			PatchItem "M_SAVEG", "s", "SaveGameMenu", 0
-		}
-		ifOption(ReadThis)
-		{
-			PatchItem "M_RDTHIS","r", "ReadThisMenu", 0
-		}
-		PatchItem "M_QUITG", "q", "QuitMenu", 0
-	}
-
-	IfGame(Heretic, Hexen)
-	{
-		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
-		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
-		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
-		TextItem "$MNU_INFO", "i", "ReadThisMenu"
-		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
-	}
+	PatchItem "M_QUITG", "q", "QuitMenu", 0
 }
 
 //-------------------------------------------------------------------------------------------
@@ -822,6 +773,27 @@ OptionValue BlendMethods
 	1.0, "$OPTVAL_PRECISE"
 }
 
+OptionValue LEAddLineOpt
+{
+	0, "$OPTVAL_ON"
+	1, "$OPTVAL_IMPORTANT"
+	2, "$OPTVAL_OFF"
+}
+
+OptionValue LEEffectsOpt
+{
+	0, "$OPTVAL_ON"
+	1, "$OPTVAL_REDUCED"
+	2, "$OPTVAL_OFF"
+}
+
+OptionValue LEDrawDistances
+{
+	0, "$OPTVAL_FULL"
+	2, "$OPTVAL_LARGE"
+	1, "$OPTVAL_SMALL"
+}
+
 OptionValue SkyModes
 {
 	0.0, "$OPTVAL_NORMAL"
@@ -941,6 +913,15 @@ OptionMenu "VideoOptions" protected
 	Slider "$DSPLYMNU_CONTRAST",				"vid_contrast",	   				0.1, 3.0, 0.1
 	Slider "$DSPLYMNU_SATURATION",				"vid_saturation",  				-3.0, 3.0, 0.25, 2
 	StaticText " "
+	
+	Option "$DSPLYMNU_LEADDLINE",				"le_addlines",		"LEAddLineOpt"
+	Option "$DSPLYMNU_LEBLOCKVIS",				"le_blockvis",		"OnOff"
+	Option "$DSPLYMNU_LEEFFECTS",				"le_effects",		"LEEffectsOpt"
+	Option "$DSPLYMNU_LEDRAWDIST",				"le_drawdistance",	"LEDrawDistances"
+	Option "$DSPLYMNU_LESKYOFF",				"le_skyboxoff",		"OffOn"
+	Slider "$DSPLYMNU_LEOBJDIST",				"xane_objdrawdistance", 0.0, 8.0, 0.5, 0
+	StaticText " "
+	
 	Option "$DSPLYMNU_CUSTOMINVERTMAP",			"cl_customizeinvulmap", "OnOff"
 	ColorPicker "$DSPLYMNU_CUSTOMINVERTC1",		"cl_custominvulmapcolor1"
 	ColorPicker "$DSPLYMNU_CUSTOMINVERTC2",		"cl_custominvulmapcolor2"
@@ -2468,6 +2449,9 @@ OptionValue "DitherModes"
 {
 	0, "$OPTVAL_OFF"
 	-1, "$OPTVAL_ON"
+	1, "$OPTVAL_OLDCOMP"
+	3, "$OPTVAL_PSX"
+	6, "$OPTVAL_SUBTLE"
 	6, "6 BPC"
 	8, "8 BPC"
 	10, "10 BPC"

@@ -152,21 +152,21 @@ CUSTOM_CVAR(Int, am_cheat, 0, 0)
 }
 
 
-CVAR(Int, am_rotate, 0, CVAR_ARCHIVE);
-CVAR(Int, am_overlay, 0, CVAR_ARCHIVE);
-CVAR(Bool, am_showsecrets, true, CVAR_ARCHIVE);
-CVAR(Bool, am_showmonsters, true, CVAR_ARCHIVE);
-CVAR(Bool, am_showitems, false, CVAR_ARCHIVE);
-CVAR(Bool, am_showtime, true, CVAR_ARCHIVE);
-CVAR(Bool, am_showtotaltime, false, CVAR_ARCHIVE);
-CVAR(Int, am_colorset, 0, CVAR_ARCHIVE);
-CVAR(Bool, am_customcolors, true, CVAR_ARCHIVE);
-CVAR(Int, am_map_secrets, 1, CVAR_ARCHIVE);
-CVAR(Int, am_drawmapback, 1, CVAR_ARCHIVE);
-CVAR(Bool, am_showkeys, true, CVAR_ARCHIVE);
-CVAR(Int, am_showtriggerlines, 0, CVAR_ARCHIVE);
-CVAR(Int, am_showthingsprites, 0, CVAR_ARCHIVE);
-CVAR (Bool, am_showkeys_always, false, CVAR_ARCHIVE);
+CVAR(Int,	am_rotate,				1,		CVAR_ARCHIVE);
+CVAR(Int,	am_overlay,				2,		CVAR_ARCHIVE);
+CVAR(Bool,	am_showsecrets,			true,	CVAR_ARCHIVE);
+CVAR(Bool,	am_showmonsters,		true,	CVAR_ARCHIVE);
+CVAR(Bool,	am_showitems,			false,	CVAR_ARCHIVE);
+CVAR(Bool,	am_showtime,			true,	CVAR_ARCHIVE);
+CVAR(Bool,	am_showtotaltime,		false,	CVAR_ARCHIVE);
+CVAR(Int,	am_colorset,			0,		CVAR_ARCHIVE);
+CVAR(Bool,	am_customcolors,		true,	CVAR_ARCHIVE);
+CVAR(Int,	am_map_secrets,			1,		CVAR_ARCHIVE);
+CVAR(Int,	am_drawmapback,			1,		CVAR_ARCHIVE);
+CVAR(Bool,	am_showkeys,			true,	CVAR_ARCHIVE);
+CVAR(Int,	am_showtriggerlines,	0,		CVAR_ARCHIVE);
+CVAR(Int,	am_showthingsprites,	0,		CVAR_ARCHIVE);
+CVAR(Bool,	am_showkeys_always,		false,	CVAR_ARCHIVE);
 
 CUSTOM_CVAR(Int, am_emptyspacemargin, 0, CVAR_ARCHIVE)
 {
@@ -269,52 +269,52 @@ CCMD(am_zoom)
 //
 //=============================================================================
 
-CVAR (Color, am_backcolor,			0x6c5440,	CVAR_ARCHIVE);
-CVAR (Color, am_yourcolor,			0xfce8d8,	CVAR_ARCHIVE);
-CVAR (Color, am_wallcolor,			0x2c1808,	CVAR_ARCHIVE);
-CVAR (Color, am_secretwallcolor,	0x000000,	CVAR_ARCHIVE);
-CVAR (Color, am_specialwallcolor,	0xffffff,	CVAR_ARCHIVE);
-CVAR (Color, am_tswallcolor,		0x888888,	CVAR_ARCHIVE);
-CVAR (Color, am_fdwallcolor,		0x887058,	CVAR_ARCHIVE);
-CVAR (Color, am_cdwallcolor,		0x4c3820,	CVAR_ARCHIVE);
-CVAR (Color, am_efwallcolor,		0x665555,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor,			0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_gridcolor,			0x8b5a2b,	CVAR_ARCHIVE);
-CVAR (Color, am_xhaircolor,			0x808080,	CVAR_ARCHIVE);
-CVAR (Color, am_notseencolor,		0x6c6c6c,	CVAR_ARCHIVE);
-CVAR (Color, am_lockedcolor,		0x007800,	CVAR_ARCHIVE);
-CVAR (Color, am_intralevelcolor,	0x0000ff,	CVAR_ARCHIVE);
-CVAR (Color, am_interlevelcolor,	0xff0000,	CVAR_ARCHIVE);
-CVAR (Color, am_secretsectorcolor,	0xff00ff,	CVAR_ARCHIVE);
-CVAR (Color, am_unexploredsecretcolor,	0xff00ff,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor_friend,	0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor_monster,	0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor_ncmonster,	0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor_item,	0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_thingcolor_citem,	0xfcfcfc,	CVAR_ARCHIVE);
-CVAR (Color, am_portalcolor,		0x404040,	CVAR_ARCHIVE);
+CVAR(Color, am_backcolor,				0x6c5440, CVAR_ARCHIVE);
+CVAR(Color, am_yourcolor,				0xfce8d8, CVAR_ARCHIVE);
+CVAR(Color, am_wallcolor,				0x2c1808, CVAR_ARCHIVE);
+CVAR(Color, am_secretwallcolor,			0x444444, CVAR_ARCHIVE);
+CVAR(Color, am_unexploredsecretcolor,	0x886644, CVAR_ARCHIVE);
+CVAR(Color, am_specialwallcolor,		0xffffff, CVAR_ARCHIVE);
+CVAR(Color, am_tswallcolor,				0x888888, CVAR_ARCHIVE);
+CVAR(Color, am_fdwallcolor,				0x887058, CVAR_ARCHIVE);
+CVAR(Color, am_cdwallcolor,				0x4c3820, CVAR_ARCHIVE);
+CVAR(Color, am_efwallcolor,				0x665555, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor,				0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_gridcolor,				0x8b5a2b, CVAR_ARCHIVE);
+CVAR(Color, am_xhaircolor,				0x808080, CVAR_ARCHIVE);
+CVAR(Color, am_notseencolor,			0x6c6c6c, CVAR_ARCHIVE);
+CVAR(Color, am_lockedcolor,				0x007800, CVAR_ARCHIVE);
+CVAR(Color, am_intralevelcolor,			0x0000ff, CVAR_ARCHIVE);
+CVAR(Color, am_interlevelcolor,			0xff0000, CVAR_ARCHIVE);
+CVAR(Color, am_secretsectorcolor,		0xff00ff, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor_friend,		0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor_monster,		0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor_ncmonster,	0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor_item,			0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_thingcolor_citem,		0xfcfcfc, CVAR_ARCHIVE);
+CVAR(Color, am_portalcolor,				0x404040, CVAR_ARCHIVE);
 
-CVAR (Color, am_ovyourcolor,		0xfce8d8,	CVAR_ARCHIVE);
-CVAR (Color, am_ovwallcolor,		0x00ff00,	CVAR_ARCHIVE);
-CVAR (Color, am_ovsecretwallcolor,	0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovspecialwallcolor,	0xffffff,	CVAR_ARCHIVE);
-CVAR (Color, am_ovotherwallscolor,	0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovlockedcolor,		0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovefwallcolor,		0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovfdwallcolor,		0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovcdwallcolor,		0x008844,	CVAR_ARCHIVE);
-CVAR (Color, am_ovunseencolor,		0x00226e,	CVAR_ARCHIVE);
-CVAR (Color, am_ovtelecolor,		0xffff00,	CVAR_ARCHIVE);
-CVAR (Color, am_ovinterlevelcolor,	0xffff00,	CVAR_ARCHIVE);
-CVAR (Color, am_ovsecretsectorcolor,0x00ffff,	CVAR_ARCHIVE);
-CVAR (Color, am_ovunexploredsecretcolor,0x00ffff,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor,		0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor_friend,	0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor_monster,	0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor_ncmonster,	0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor_item,		0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovthingcolor_citem,		0xe88800,	CVAR_ARCHIVE);
-CVAR (Color, am_ovportalcolor,			0x004022,	CVAR_ARCHIVE);
+CVAR(Color, am_ovyourcolor,				0xcd80cd, CVAR_ARCHIVE);
+CVAR(Color, am_ovwallcolor,				0xffffff, CVAR_ARCHIVE);
+CVAR(Color, am_ovsecretwallcolor,		0xcae690, CVAR_ARCHIVE);
+CVAR(Color, am_ovunexploredsecretcolor,	0x90e6ca, CVAR_ARCHIVE);
+CVAR(Color, am_ovspecialwallcolor,		0xbbffbb, CVAR_ARCHIVE);
+CVAR(Color, am_ovotherwallscolor,		0xffa0a0, CVAR_ARCHIVE);
+CVAR(Color, am_ovlockedcolor,			0xffa0a0, CVAR_ARCHIVE);
+CVAR(Color, am_ovefwallcolor,			0xe4e4e4, CVAR_ARCHIVE);
+CVAR(Color, am_ovfdwallcolor,			0xc9c9c9, CVAR_ARCHIVE);
+CVAR(Color, am_ovcdwallcolor,			0xf2f2f2, CVAR_ARCHIVE);
+CVAR(Color, am_ovunseencolor,			0xff2020, CVAR_ARCHIVE);
+CVAR(Color, am_ovtelecolor,				0xffa0ff, CVAR_ARCHIVE);
+CVAR(Color, am_ovinterlevelcolor,		0xc0ffff, CVAR_ARCHIVE);
+CVAR(Color, am_ovsecretsectorcolor,		0xe6e690, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor,			0xc0ffff, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor_friend,		0xbbffbb, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor_monster,	0xffc0c0, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor_ncmonster,	0xffb995, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor_item,		0xbbbbff, CVAR_ARCHIVE);
+CVAR(Color, am_ovthingcolor_citem,		0xffffa0, CVAR_ARCHIVE);
+CVAR(Color, am_ovportalcolor,			0xffa0ff, CVAR_ARCHIVE);
 
 //=============================================================================
 //

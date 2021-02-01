@@ -89,16 +89,16 @@ struct InterpolationViewer
 // PRIVATE DATA DECLARATIONS -----------------------------------------------
 static TArray<InterpolationViewer> PastViewers;
 static FRandom pr_torchflicker ("TorchFlicker");
-static FRandom pr_hom;
+//static FRandom pr_hom;	//How to make a random variable in GZDoom's source code.
 bool NoInterpolateView;	// GL needs access to this.
 static TArray<DVector3a> InterpolationPath;
 
 // PUBLIC DATA DEFINITIONS -------------------------------------------------
 
-CVAR (Bool, r_deathcamera, false, CVAR_ARCHIVE)
-CVAR (Int, r_clearbuffer, 0, 0)
-CVAR (Bool, r_drawvoxels, true, 0)
-CVAR (Bool, r_drawplayersprites, true, 0)	// [RH] Draw player sprites?
+CVAR (Bool, r_deathcamera, true, CVAR_ARCHIVE)
+CVAR (Int, r_clearbuffer, 242, CVAR_ARCHIVE)
+CVAR (Bool, r_drawvoxels, true, CVAR_ARCHIVE)
+CVAR (Bool, r_drawplayersprites, true, CVAR_ARCHIVE)	// [RH] Draw player sprites?
 CUSTOM_CVAR(Float, r_quakeintensity, 1.0f, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 {
 	if (self < 0.f) self = 0.f;
@@ -985,27 +985,8 @@ void R_SetupFrame (FRenderViewpoint &viewpoint, FViewWindow &viewwindow, AActor 
 	{
 		int color;
 		int hom = r_clearbuffer;
-
-		if (hom == 3)
-		{
-			hom = ((screen->FrameTime / 128) & 1) + 1;
-		}
-		if (hom == 1)
-		{
-			color = GPalette.BlackIndex;
-		}
-		else if (hom == 2)
-		{
-			color = GPalette.WhiteIndex;
-		}
-		else if (hom == 4)
-		{
-			color = (screen->FrameTime / 32) & 255;
-		}
-		else
-		{
-			color = pr_hom();
-		}
+		
+		color = (hom - 1) % 256;
 		screen->SetClearColor(color);
 		SWRenderer->SetClearColor(color);
 	}
@@ -1041,7 +1022,7 @@ void R_SetupFrame (FRenderViewpoint &viewpoint, FViewWindow &viewwindow, AActor 
 }
 
 
-CUSTOM_CVAR(Float, maxviewpitch, 90.f, CVAR_ARCHIVE | CVAR_SERVERINFO)
+CUSTOM_CVAR(Float, maxviewpitch, 75.f, CVAR_ARCHIVE | CVAR_SERVERINFO)
 {
 	if (self>90.f) self = 90.f;
 	else if (self<-90.f) self = -90.f;

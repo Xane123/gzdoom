@@ -3196,7 +3196,7 @@ static int D_DoomMain_Internal (void)
 
 		if ((gameinfo.flags & GI_SHAREWARE) && pwads.Size() > 0)
 		{
-			I_FatalError ("You cannot -file with the shareware version. Register!");
+			I_FatalError ("No! You're not allowed to load mods for this version, which may be a demo.");
 		}
 
 		FBaseCVar::DisableCallbacks();

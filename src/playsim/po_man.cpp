@@ -1027,129 +1027,133 @@ void FPolyObj::UnLinkPolyobj ()
 
 bool FPolyObj::CheckMobjBlocking (side_t *sd)
 {
-	static TArray<AActor *> checker;
-	FBlockNode *block;
-	AActor *mobj;
-	int i, j, k;
-	int left, right, top, bottom;
-	line_t *ld;
-	bool blocked;
-	bool performBlockingThrust;
-	int bmapwidth = Level->blockmap.bmapwidth;
-	int bmapheight = Level->blockmap.bmapheight;
-
-	ld = sd->linedef;
-
-	top = Level->blockmap.GetBlockY(ld->bbox[BOXTOP]);
-	bottom = Level->blockmap.GetBlockY(ld->bbox[BOXBOTTOM]);
-	left = Level->blockmap.GetBlockX(ld->bbox[BOXLEFT]);
-	right = Level->blockmap.GetBlockX(ld->bbox[BOXRIGHT]);
-
-	blocked = false;
-	checker.Clear();
-
-	bottom = bottom < 0 ? 0 : bottom;
-	bottom = bottom >= bmapheight ? bmapheight-1 : bottom;
-	top = top < 0 ? 0 : top;
-	top = top >= bmapheight  ? bmapheight-1 : top;
-	left = left < 0 ? 0 : left;
-	left = left >= bmapwidth ? bmapwidth-1 : left;
-	right = right < 0 ? 0 : right;
-	right = right >= bmapwidth ?  bmapwidth-1 : right;
-
-	for (j = bottom*bmapwidth; j <= top*bmapwidth; j += bmapwidth)
+	if (bHurtOnTouch) return false;	//[XANE]This is so draw distance polyobjects are non-solid.
+	else
 	{
-		for (i = left; i <= right; i++)
+		static TArray<AActor *> checker;
+		FBlockNode *block;
+		AActor *mobj;
+		int i, j, k;
+		int left, right, top, bottom;
+		line_t *ld;
+		bool blocked;
+		bool performBlockingThrust;
+		int bmapwidth = Level->blockmap.bmapwidth;
+		int bmapheight = Level->blockmap.bmapheight;
+
+		ld = sd->linedef;
+
+		top = Level->blockmap.GetBlockY(ld->bbox[BOXTOP]);
+		bottom = Level->blockmap.GetBlockY(ld->bbox[BOXBOTTOM]);
+		left = Level->blockmap.GetBlockX(ld->bbox[BOXLEFT]);
+		right = Level->blockmap.GetBlockX(ld->bbox[BOXRIGHT]);
+
+		blocked = false;
+		checker.Clear();
+
+		bottom = bottom < 0 ? 0 : bottom;
+		bottom = bottom >= bmapheight ? bmapheight - 1 : bottom;
+		top = top < 0 ? 0 : top;
+		top = top >= bmapheight ? bmapheight - 1 : top;
+		left = left < 0 ? 0 : left;
+		left = left >= bmapwidth ? bmapwidth - 1 : left;
+		right = right < 0 ? 0 : right;
+		right = right >= bmapwidth ? bmapwidth - 1 : right;
+
+		for (j = bottom * bmapwidth; j <= top * bmapwidth; j += bmapwidth)
 		{
-			for (block = Level->blockmap.blocklinks[j+i]; block != nullptr; block = block->NextActor)
+			for (i = left; i <= right; i++)
 			{
-				mobj = block->Me;
-				for (k = (int)checker.Size()-1; k >= 0; --k)
+				for (block = Level->blockmap.blocklinks[j + i]; block != nullptr; block = block->NextActor)
 				{
-					if (checker[k] == mobj)
+					mobj = block->Me;
+					for (k = (int)checker.Size() - 1; k >= 0; --k)
 					{
-						break;
+						if (checker[k] == mobj)
+						{
+							break;
+						}
 					}
-				}
-				if (k < 0)
-				{
-					checker.Push (mobj);
-					if ((mobj->flags&MF_SOLID) && !(mobj->flags&MF_NOCLIP))
+					if (k < 0)
 					{
-						FLineOpening open;
-						open.top = LINEOPEN_MAX;
-						open.bottom = LINEOPEN_MIN;
-						// [TN] Check wether this actor gets blocked by the line.
-						if (ld->backsector != nullptr &&
-							!(ld->flags & (ML_BLOCKING|ML_BLOCKEVERYTHING))
-							&& !(ld->flags & ML_BLOCK_PLAYERS && (mobj->player || (mobj->flags8 & MF8_BLOCKASPLAYER))) 
-							&& !(ld->flags & ML_BLOCKMONSTERS && mobj->flags3 & MF3_ISMONSTER)
-							&& !((mobj->flags & MF_FLOAT) && (ld->flags & ML_BLOCK_FLOATERS))
-							&& (!(ld->flags & ML_3DMIDTEX) ||
+						checker.Push(mobj);
+						if ((mobj->flags&MF_SOLID) && !(mobj->flags&MF_NOCLIP))
+						{
+							FLineOpening open;
+							open.top = LINEOPEN_MAX;
+							open.bottom = LINEOPEN_MIN;
+							// [TN] Check wether this actor gets blocked by the line.
+							if (ld->backsector != nullptr &&
+								!(ld->flags & (ML_BLOCKING | ML_BLOCKEVERYTHING))
+								&& !(ld->flags & ML_BLOCK_PLAYERS && (mobj->player || (mobj->flags8 & MF8_BLOCKASPLAYER)))
+								&& !(ld->flags & ML_BLOCKMONSTERS && mobj->flags3 & MF3_ISMONSTER)
+								&& !((mobj->flags & MF_FLOAT) && (ld->flags & ML_BLOCK_FLOATERS))
+								&& (!(ld->flags & ML_3DMIDTEX) ||
 								(!P_LineOpening_3dMidtex(mobj, ld, open) &&
 									(mobj->Top() < open.top)
-								) || (open.abovemidtex && mobj->Z() > mobj->floorz))
-							)
-						{
-							// [BL] We can't just continue here since we must
-							// determine if the line's backsector is going to
-							// be blocked.
-							performBlockingThrust = false;
-						}
-						else
-						{
-							performBlockingThrust = true;
-						}
-
-						DVector2 pos = mobj->PosRelative(ld);
-						FBoundingBox box(pos.X, pos.Y, mobj->radius);
-
-						if (!inRange(box, ld) || BoxOnLineSide(box, ld) != -1)
-						{
-							continue;
-						}
-
-						if (ld->isLinePortal())
-						{
-							// Fixme: this still needs to figure out if the polyobject move made the player cross the portal line.
-							if (P_TryMove(mobj, mobj->Pos(), false))
+									) || (open.abovemidtex && mobj->Z() > mobj->floorz))
+								)
 							{
-								continue;
+								// [BL] We can't just continue here since we must
+								// determine if the line's backsector is going to
+								// be blocked.
+								performBlockingThrust = false;
 							}
-						}
-						// We have a two-sided linedef so we should only check one side
-						// so that the thrust from both sides doesn't cancel each other out.
-						// Best use the one facing the player and ignore the back side.
-						if (ld->sidedef[1] != nullptr)
-						{
-							int side = P_PointOnLineSidePrecise(mobj->Pos(), ld);
-							if (ld->sidedef[side] != sd)
-							{
-								continue;
-							}
-							// [BL] See if we hit below the floor/ceiling of the poly.
-							else if(!performBlockingThrust && (
-									mobj->Z() < ld->sidedef[!side]->sector->GetSecPlane(sector_t::floor).ZatPoint(mobj) ||
-									mobj->Top() > ld->sidedef[!side]->sector->GetSecPlane(sector_t::ceiling).ZatPoint(mobj)
-								))
+							else
 							{
 								performBlockingThrust = true;
 							}
-						}
 
-						if(performBlockingThrust)
-						{
-							ThrustMobj (mobj, sd);
-							blocked = true;
+							DVector2 pos = mobj->PosRelative(ld);
+							FBoundingBox box(pos.X, pos.Y, mobj->radius);
+
+							if (!inRange(box, ld) || BoxOnLineSide(box, ld) != -1)
+							{
+								continue;
+							}
+
+							if (ld->isLinePortal())
+							{
+								// Fixme: this still needs to figure out if the polyobject move made the player cross the portal line.
+								if (P_TryMove(mobj, mobj->Pos(), false))
+								{
+									continue;
+								}
+							}
+							// We have a two-sided linedef so we should only check one side
+							// so that the thrust from both sides doesn't cancel each other out.
+							// Best use the one facing the player and ignore the back side.
+							if (ld->sidedef[1] != nullptr)
+							{
+								int side = P_PointOnLineSidePrecise(mobj->Pos(), ld);
+								if (ld->sidedef[side] != sd)
+								{
+									continue;
+								}
+								// [BL] See if we hit below the floor/ceiling of the poly.
+								else if (!performBlockingThrust && (
+									mobj->Z() < ld->sidedef[!side]->sector->GetSecPlane(sector_t::floor).ZatPoint(mobj) ||
+									mobj->Top() > ld->sidedef[!side]->sector->GetSecPlane(sector_t::ceiling).ZatPoint(mobj)
+									))
+								{
+									performBlockingThrust = true;
+								}
+							}
+
+							if (performBlockingThrust)
+							{
+								ThrustMobj(mobj, sd);
+								blocked = true;
+							}
+							else
+								continue;
 						}
-						else
-							continue;
 					}
 				}
 			}
 		}
+		return blocked;
 	}
-	return blocked;
 }
 
 //==========================================================================

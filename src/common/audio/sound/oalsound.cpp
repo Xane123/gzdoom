@@ -127,7 +127,7 @@ static ALenum checkALError(const char *fn, unsigned int ln)
 			fn = strrchr(fn, '/')+1;
 		else if(strchr(fn, '\\'))
 			fn = strrchr(fn, '\\')+1;
-		Printf(">>>>>>>>>>>> Received AL error %s (%#x), %s:%u\n", alGetString(err), err, fn, ln);
+		//Printf(">>>>>>>>>>>> Received AL error %s (%#x), %s:%u\n", alGetString(err), err, fn, ln);
 	}
 	return err;
 }
@@ -142,7 +142,7 @@ static ALCenum checkALCError(ALCdevice *device, const char *fn, unsigned int ln)
 			fn = strrchr(fn, '/')+1;
 		else if(strchr(fn, '\\'))
 			fn = strrchr(fn, '\\')+1;
-		Printf(">>>>>>>>>>>> Received ALC error %s (%#x), %s:%u\n", alcGetString(device, err), err, fn, ln);
+		//Printf(">>>>>>>>>>>> Received ALC error %s (%#x), %s:%u\n", alcGetString(device, err), err, fn, ln);
 	}
 	return err;
 }

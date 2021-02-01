@@ -784,7 +784,14 @@ void FDInputJoystick::SetDefaultConfig()
 		// Four axes? First two are movement, last two are looking around.
 		if (Axes.Size() >= 4)
 		{
-			Axes[3].GameAxis = JOYAXIS_Pitch;	Axes[3].Multiplier = 0.75f;
+			Axes[2].GameAxis = JOYAXIS_Pitch; //[XANE]They appear to be backward from what they should be on the Logitech Dual Action, so flip 'em around!
+			Axes[3].GameAxis = JOYAXIS_Yaw;
+
+			//[XANE]Every controller I've used with Magical Mary 1 has had insane speed when looking up/down and a pretty high turning speed. Let's reduce that.
+			Axes[2].Multiplier = 0.25f;
+			Axes[3].Multiplier = 0.5f;
+			//Axes[3].GameAxis = JOYAXIS_Pitch;	Axes[3].Multiplier = 0.75f;
+
 			// Five axes? Use the fifth one for moving up and down.
 			if (Axes.Size() >= 5)
 			{

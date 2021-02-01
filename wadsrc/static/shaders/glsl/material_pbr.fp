@@ -170,8 +170,11 @@ vec3 ProcessMaterialLight(Material material, vec3 ambientLight)
 
 	// Pretend we sampled the sector light level from an irradiance map
 
-	vec3 F = fresnelSchlickRoughness(clamp(dot(N, V), 0.0, 1.0), F0, roughness);
+	//vec3 F = fresnelSchlickRoughness(clamp(dot(N, V), 0.0, 1.0), F0, roughness);
 
+	//This edit removes the stupid darkening effect completely.
+	vec3 F = fresnelSchlickRoughness(1.0, F0, roughness);
+	
 	vec3 kS = F;
 	vec3 kD = 1.0 - kS;
 

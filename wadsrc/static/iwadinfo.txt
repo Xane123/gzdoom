@@ -1,0 +1,22 @@
+// Must be sorted in identification order (easiest to recognize first!)
+
+IWad
+{
+	Name = "Magical Mary 1: Redthorn's Family Ransom"
+	Autoname = "mma.base"
+	Game = "Doom"
+	Config = "Doom"
+	Mapinfo = "mapinfo/doom2.txt"
+	BannerColors = "ff a0 d0", "8d 6c ae"
+	Load = "MagicalMary2.pk3", "MagicalMary3.pk3", "mm1_maps.wad", "mod_mobile.pk3", "mod_materials.pk3", "mod_hires.pk3", "mod_vr.pk3"
+}
+
+Names
+{
+	"MagicalMary.ipk3"
+}
+
+Order	// Order in the IWAD selection box
+{
+	"Magical Mary 1: Redthorn's Family Ransom"
+}

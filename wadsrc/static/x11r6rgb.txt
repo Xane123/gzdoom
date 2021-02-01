@@ -753,5 +753,12 @@
 144 238 144		light green
 144 238 144		LightGreen
 
-
- 
+! $XaneConsortium v1$
+255 128 64		XaneLightOrange
+255 128 0 		XaneOrange
+244 244 72 		XaneYellow
+72 255 72 		XaneGreen
+0 128 255 		XaneSeafoamGreen
+72 244 244 		XaneCyan
+32 96 255 		XaneBlue
+225 128 224		XanePink

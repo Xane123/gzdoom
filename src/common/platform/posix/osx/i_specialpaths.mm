@@ -168,7 +168,7 @@ FString M_GetConfigPath(bool for_reading)
 	if (path.IsNotEmpty())
 	{
 		// There seems to be no way to get Preferences path via NSFileManager
-		path += "/Preferences/";
+		path += "/Preferences/" GAMESIG "/";
 		CreatePath(path);
 
 		if (!DirExists(path))

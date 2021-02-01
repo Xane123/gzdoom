@@ -3479,7 +3479,7 @@ bool FSlide::BounceWall(AActor *mo)
 	{
 		lineangle += 180;
 	}
-	moveangle = mo->Vel.Angle();
+	//moveangle = mo->Vel.Angle();	//[XANE]This could be the code that makes coins awkwardly reset rotation when bouncing!
 	deltaangle = (lineangle * 2) - moveangle;
 	mo->Angles.Yaw = deltaangle;
 

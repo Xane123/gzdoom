@@ -204,10 +204,10 @@ float HWDrawInfo::GetFogDensity(int lightlevel, PalEntry fogcolor, int sectorfog
 		// case 4: level has fog density set
 		density = (float)Level->fogdensity;
 	}
-	else if (lightlevel < 248)
-	{
+	else if (lightlevel < 255)
+	{	//[XANE]This is how GZDoom always should've looked. Now fog is overall farther away, and is now in the more reasonable limit of 1-255! Helps my big levels from being as foggy.
 		// case 5: use light level
-		density = (float)clamp<int>(255 - lightlevel, 30, 255);
+		density = (float)clamp<int>(255 - lightlevel, 1, 255);
 	}
 	else
 	{

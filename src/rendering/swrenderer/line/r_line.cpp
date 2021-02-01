@@ -61,7 +61,7 @@
 #include "swrenderer/things/r_decal.h"
 #include "swrenderer/r_renderthread.h"
 
-CVAR(Bool, r_fogboundary, true, 0)
+CVAR(Bool, r_fogboundary, false, 0)
 CVAR(Bool, r_drawmirrors, true, 0)
 
 namespace swrenderer
