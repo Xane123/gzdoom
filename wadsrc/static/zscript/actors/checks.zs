@@ -273,4 +273,21 @@ extend class Actor
 		return null;
 	}
 	
+	//Xane's simple "special"-setting actions.
+	
+	action void A_SetSpecialValue(int value)
+	{	//Sets this object's special value to "value".
+		self.special = value;
+	}
+	
+	action void A_CopySpecialValue(int ptr = AAPTR_MASTER)
+	{
+		Actor mobj = GetPointer(ptr);
+		
+		if(mobj!=null && mobj!=self)
+		{
+			self.special = mobj.special;
+		}
+	}
+	
 }
