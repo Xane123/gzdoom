@@ -525,7 +525,10 @@
 		LEVELINFO_SUCK_TIME,
 		LEVELINFO_PARTNUM,
 		LEVELINFO_MUSIC_ID,
-		LEVELINFO_FOLIAGE_COLOR
+		LEVELINFO_FOLIAGE_COLOR,
+		LEVELINFO_TYPE,
+		LEVELINFO_TIMEOFDAY_ON,
+		LEVELINFO_NEXTMAP_TIME
 	};
 	enum {
 		PLAYERINFO_TEAM,
@@ -9769,8 +9772,8 @@ scriptwait:
 			case LEVELINFO_SUCK_TIME:		STACK(1) = Level->sucktime;			break;
 			case LEVELINFO_CLUSTERNUM:		STACK(1) = Level->cluster;			break;
 			case LEVELINFO_LEVELNUM:		STACK(1) = Level->levelnum;			break;
-			case LEVELINFO_TOTAL_SECRETS:	STACK(1) = Level->total_secrets;		break;
-			case LEVELINFO_FOUND_SECRETS:	STACK(1) = Level->found_secrets;		break;
+			case LEVELINFO_TOTAL_SECRETS:	STACK(1) = Level->total_secrets;	break;
+			case LEVELINFO_FOUND_SECRETS:	STACK(1) = Level->found_secrets;	break;
 			case LEVELINFO_TOTAL_ITEMS:		STACK(1) = Level->total_items;		break;
 			case LEVELINFO_FOUND_ITEMS:		STACK(1) = Level->found_items;		break;
 			case LEVELINFO_TOTAL_MONSTERS:	STACK(1) = Level->total_monsters;	break;
@@ -9778,6 +9781,9 @@ scriptwait:
 			case LEVELINFO_PARTNUM:			STACK(1) = Level->partnum;			break;	//[XANE]Level part number, for levels that come in multple parts.
 			case LEVELINFO_MUSIC_ID:		STACK(1) = Level->songid;			break;	//[XANE]Music ID that will play at the beginning of this level.
 			case LEVELINFO_FOLIAGE_COLOR:	STACK(1) = Level->foliagecolor;		break;	//[XANE]Color used by tree leaf clusters and grass.
+			case LEVELINFO_TYPE:			STACK(1) = Level->leveltype;		break;
+			case LEVELINFO_TIMEOFDAY_ON:	STACK(1) = Level->timeofday;		break;
+			case LEVELINFO_NEXTMAP_TIME:	STACK(1) = Level->override_time;	break;
 			default:						STACK(1) = 0;						break;
 			}
 			break;

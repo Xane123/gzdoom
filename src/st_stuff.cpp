@@ -217,8 +217,8 @@ bool ST_Responder (event_t *ev)
 	else
 	{
 		static cheatseq_t *cheatlists[] = { DoomCheats, HereticCheats, HexenCheats, StrifeCheats, ChexCheats, SpecialCheats };
-		static int counts[] = { countof(DoomCheats), countof(HereticCheats)-2, countof(HexenCheats), 
-								countof(StrifeCheats), countof(ChexCheats)-1, countof(SpecialCheats) };
+		static int counts[] = { countof(DoomCheats), countof(HereticCheats), countof(HexenCheats), 
+								countof(StrifeCheats), countof(ChexCheats), countof(SpecialCheats) };
 
 		for (size_t i=0; i<countof(cheatlists); i++)
 		{
@@ -351,7 +351,7 @@ static bool Cht_AutoMap (cheatseq_t *cheat)
 {
 	if (automapactive)
 	{
-		am_cheat = (am_cheat + 1) % 3;
+		am_cheat = (am_cheat + 1) % 4;
 		return true;
 	}
 	else

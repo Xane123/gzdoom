@@ -36,6 +36,7 @@ static float distfogtable[2][256];	// light to fog conversion table for black fo
 
 CVAR(Int, gl_weaponlight, 8, CVAR_ARCHIVE);
 CVAR(Bool, gl_enhanced_nightvision, true, CVAR_ARCHIVE|CVAR_NOINITCALL)
+CVAR(Bool, gl_foghorror, false, CVAR_ARCHIVE)
 
 //==========================================================================
 //
@@ -172,7 +173,7 @@ float HWDrawInfo::GetFogDensity(int lightlevel, PalEntry fogcolor, int sectorfog
 	auto oldlightmode = lightmode;
 	if (isSoftwareLighting() && blendfactor > 0) lightmode = ELightMode::Doom;	// The blendfactor feature does not work with software-style lighting.
 
-	if (lightmode == ELightMode::DoomLegacy)
+	if (lightmode == ELightMode::DoomLegacy && gl_foghorror)
 	{
 		// uses approximations of Legacy's default settings.
 		density = Level->fogdensity ? (float)Level->fogdensity : 18;
@@ -252,7 +253,7 @@ bool HWDrawInfo::CheckFog(sector_t *frontsector, sector_t *backsector)
 	else 
 	{
 		// case 4: use light level
-		if (frontsector->lightlevel >= 248) return false;
+		if (frontsector->lightlevel >= 256) return false;
 	}
 
 	fogcolor = backsector->Colormap.FadeColor;
@@ -272,7 +273,7 @@ bool HWDrawInfo::CheckFog(sector_t *frontsector, sector_t *backsector)
 	else 
 	{
 		// case 4: use light level
-		if (backsector->lightlevel < 248) return false;
+		if (backsector->lightlevel < 256) return false;
 	}
 
 	// in all other cases this might create more problems than it solves.

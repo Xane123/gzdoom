@@ -140,7 +140,9 @@ CUSTOM_CVAR(Bool, gl_notexturefill, false, CVAR_NOINITCALL)
 	}
 }
 
-CUSTOM_CVAR(Int, gl_lightmode, 3, CVAR_ARCHIVE | CVAR_NOINITCALL)
+EXTERN_CVAR(Int, gl_tonemap)	//Referenced to toggle software appearance if "World of Kirbycraft" is selected as the "light mode" below.
+
+CUSTOM_CVAR(Int, gl_lightmode, 4, CVAR_ARCHIVE | CVAR_NOINITCALL)	// [XANE]Doom Legacy's appearance looks the best, minus forced fog.
 {
 	int newself = self;
 	if (newself > 8) newself = 16;	// use 8 and 16 for software lighting to avoid conflicts with the bit mask ( in hindsight a bad idea.)
@@ -151,6 +153,10 @@ CUSTOM_CVAR(Int, gl_lightmode, 3, CVAR_ARCHIVE | CVAR_NOINITCALL)
 	{
 		if ((Level->info == nullptr || Level->info->lightmode == ELightMode::NotSet)) Level->lightMode = (ELightMode)*self;
 	}
+
+	// [XANE]If World of Kirbycraft (software) lighting mode is selected, the palette tonemap is silently turned on.
+	if (self == 8) gl_tonemap = 5;
+	else gl_tonemap = 0;
 }
 
 CVAR(Int, sv_alwaystally, 0, CVAR_SERVERINFO)
@@ -1691,6 +1697,10 @@ void FLevelLocals::Init()
 	partnum = info->partnum;			//[XANE]Level part number, for levels that come in multiple parts.
 	songid = info->songid;				//[XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
 	foliagecolor = info->foliagecolor;	//[XANE]Color used by tree leaf clusters and grass.
+	leveltype = info->leveltype;
+	timeofday = info->timeofday;
+	override_time = info->override_time;
+	
 	Music = info->Music;
 	musicorder = info->musicorder;
 	MusicVolume = 1.f;

@@ -981,19 +981,8 @@ void R_SetupFrame (FRenderViewpoint &viewpoint, FViewWindow &viewwindow, AActor 
 
 	validcount++;
 
-	if (r_clearbuffer != 0)
-	{
-		int color;
-		int hom = r_clearbuffer;
-		
-		color = (hom - 1) % 256;
-		screen->SetClearColor(color);
-		SWRenderer->SetClearColor(color);
-	}
-    else
-	{
-		screen->SetClearColor(GPalette.BlackIndex);
-    }
+	screen->SetClearColor((r_clearbuffer - 1) % 256);	// [XANE]The background is always cleared to a solid color in the palette.
+	SWRenderer->SetClearColor((r_clearbuffer - 1) % 256);
 	
 	
 	// And finally some info that is needed for the hardware renderer

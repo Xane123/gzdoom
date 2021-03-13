@@ -5,6 +5,8 @@
 OptionMenu "OptionsMenuSimple" protected
 {
 	Title "$OPTMNU_TITLE"
+	Submenu "$OS_TITLE", "os_Menu"	//Searching is pretty important and useful.
+	StaticText " "
 	Submenu "$OPTMNU_CONTROLS",			"CustomizeControls"
 	Submenu "$OPTMNU_MOUSE",			"MouseOptions"
 	Submenu "$OPTMNU_JOYSTICK",			"JoystickOptions"
@@ -14,8 +16,7 @@ OptionMenu "OptionsMenuSimple" protected
 	Submenu "$HUDMNU_SCALEOPT",			"ScalingOptionsSimple"
 	StaticText " "
 	Submenu "$OPTMNU_MISCELLANEOUS",	"MiscOptionsSimple"	
-	StaticText " "
-	Submenu "$OS_TITLE", "os_Menu"
+	Submenu "Accessibility Options",	"AccessibilityOptions"
 	StaticText " "
 	Submenu "$OPTMNU_FULLOPTIONS", "OptionsMenuFull"
 	StaticText " "
@@ -33,10 +34,11 @@ OptionMenu SoundOptionsSimple protected
 	StaticText " "
 	Slider "$SNDMNU_SFXVOLUME",			"snd_sfxvolume", 0, 1, 0.05, 2
 	Slider "$SNDMNU_MUSICVOLUME",		"snd_musicvolume", 0, 1, 0.05, 2
+	Option "$SNDMNU_MUSICVERSION",		"snd_musicversion", "MusicVersions"
 	StaticText " "
 	Slider "$SNDMNU_MENUVOLUME",		"snd_menuvolume", 0, 1, 0.05, 2
 	StaticText " "
-	Option "$SNDMNU_MIDIDEVICE",		"snd_mididevice", "MidiDevices"
+	//Option "$SNDMNU_MIDIDEVICE",		"snd_mididevice", "MidiDevices"
 	Command "$SNDMNU_RESTART",			"snd_reset"
 }
 

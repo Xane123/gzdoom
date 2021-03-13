@@ -317,14 +317,15 @@ DefaultOptionMenu
 OptionMenu "OptionsMenu" protected
 {
 	Title "$OPTMNU_TITLE"
+	Submenu "$OS_TITLE", "os_Menu"	//Search is so useful, it deserves to come first.
+	StaticText " "
 	Submenu "$OPTMNU_CONTROLS",			"CustomizeControls"
 	Submenu "$OPTMNU_MOUSE",			"MouseOptions"
 	Submenu "$OPTMNU_JOYSTICK",			"JoystickOptions"
 	StaticText " "
 	Submenu "$OPTMNU_PLAYER",			"NewPlayerMenu"
+	Submenu "Accessibility Options",	"AccessibilityOptions"
 	Submenu "$OPTMNU_GAMEPLAY",			"GameplayOptions"
-	Submenu "$OPTMNU_COMPATIBILITY",	"CompatibilityOptions"
-	Submenu "$OPTMNU_AUTOMAP",			"AutomapOptions"
 	Submenu "$OPTMNU_HUD",				"HUDOptions"
 	Submenu "$OPTMNU_MISCELLANEOUS",	"MiscOptions"
 	Submenu "$OPTMNU_NETWORK",			"NetworkOptions"
@@ -332,9 +333,7 @@ OptionMenu "OptionsMenu" protected
 	Submenu "$OPTMNU_DISPLAY",			"VideoOptions"
 	Submenu "$OPTMNU_VIDEO",			"VideoModeMenu"
 	StaticText " "
-	Submenu "$OS_TITLE", "os_Menu"
 	Option "$OPTMNU_SIMPLEON",			"m_simpleoptions", "OnOff"
-	
 	StaticText " "
 	SafeCommand	"$OPTMNU_DEFAULTS",		"reset2defaults"
 	SafeCommand	"$OPTMNU_RESETTOSAVED",	"reset2saved"
@@ -874,6 +873,31 @@ OptionValue PreferBackend
 	2, "$OPTVAL_SOFTPOLY"
 }
 
+OptionValue BufferFill
+{
+	0, "HALL OF MIRRORS"
+	1, "BLACK"
+	2, "WHITE"
+	3, "FLASHING"
+	4, "RAINBOW"
+	5, "SEIZURE"
+}
+
+OptionValue LEBlockVisOpt
+{
+	0, "Show whole area"
+	1, "Block distant"
+}
+
+OptionValue LEEffectsOpt
+{
+	-2, "Powerful supercomputer"
+	-1, "High-end or gaming PC"
+	0, "Standard"
+	1, "Reduced"
+	2, "Minimal"
+}
+
 OptionMenu "TrueColorOptions" protected
 {
 	Title "$TCMNU_TITLE"
@@ -886,7 +910,7 @@ OptionMenu "TrueColorOptions" protected
 OptionMenu "SWROptions" protected
 {
 	Title "$DSPLYMNU_SWOPT"
-	Submenu "$DSPLYMNU_TCOPT",			"TrueColorOptions"
+	Submenu "$DSPLYMNU_TCOPT",					"TrueColorOptions"
 	Option "$DSPLYMNU_BLENDMETHOD",				"r_blendmethod", "BlendMethods"
 	StaticText " "
 	Option "$DSPLYMNU_SKYMODE",					"r_skymode", "SkyModes"
@@ -900,11 +924,11 @@ OptionMenu "VideoOptions" protected
 {
 	Title "$DSPLYMNU_TITLE"
 
-	Submenu "$DSPLYMNU_GLOPT", 			"OpenGLOptions"
-	Submenu "$DSPLYMNU_SWOPT", 			"SWROptions"
-	Submenu "$DSPLYMNU_VKOPT",			"VKOptions"
-	Submenu "$GLMNU_TEXOPT", 			"GLTextureGLOptions"
-	Submenu "$GLMNU_DYNLIGHT",			"GLLightOptions"
+	Submenu "$DSPLYMNU_GLOPT", 					"OpenGLOptions"
+	Submenu "$DSPLYMNU_SWOPT", 					"SWROptions"
+	Submenu "$DSPLYMNU_VKOPT",					"VKOptions"
+	Submenu "$GLMNU_TEXOPT", 					"GLTextureGLOptions"
+	Submenu "$GLMNU_DYNLIGHT",					"GLLightOptions"
 	StaticText " "
 	Slider "$DSPLYMNU_SCREENSIZE",				"screenblocks", 				3.0, 12.0, 1.0, 0
 
@@ -915,10 +939,10 @@ OptionMenu "VideoOptions" protected
 	StaticText " "
 	
 	Option "$DSPLYMNU_LEADDLINE",				"le_addlines",		"LEAddLineOpt"
-	Option "$DSPLYMNU_LEBLOCKVIS",				"le_blockvis",		"OnOff"
+	Option "$DSPLYMNU_LEBLOCKVIS",				"le_blockvis",		"LEBlockVisOpt"
 	Option "$DSPLYMNU_LEEFFECTS",				"le_effects",		"LEEffectsOpt"
-	Option "$DSPLYMNU_LEDRAWDIST",				"le_drawdistance",	"LEDrawDistances"
 	Option "$DSPLYMNU_LESKYOFF",				"le_skyboxoff",		"OffOn"
+	Option "$DSPLYMNU_LEDRAWDIST",				"le_drawdistance",	"LEDrawDistances"
 	Slider "$DSPLYMNU_LEOBJDIST",				"xane_objdrawdistance", 0.0, 8.0, 0.5, 0
 	StaticText " "
 	
@@ -1017,9 +1041,9 @@ OptionMenu "HUDOptions" protected
 	Submenu "$HUDMNU_SCALEOPT",				"ScalingOptions"
 	Submenu "$HUDMNU_ALTHUD",				"AltHudOptions"
 	Submenu "$HUDMNU_MESSAGE", 				"MessageOptions"
-	Submenu "$HUDMNU_FLASH", 				"FlashOptions"
 	Submenu "$DSPLYMNU_SCOREBOARD", 		"ScoreboardOptions"
 	Submenu "$HUDMNU_FONTOPTIONS",			"FontOptions"
+	Submenu "$OPTMNU_AUTOMAP",			"AutomapOptions"
 	StaticText " "
 	Option "$HUDMNU_CROSSHAIRON",			"crosshairon", "OnOff"
 	Option "$HUDMNU_CROSSHAIR",				"crosshair", "Crosshairs"
@@ -1031,7 +1055,6 @@ OptionMenu "HUDOptions" protected
 	StaticText " "
 	Option "$HUDMNU_NAMETAGS",				"displaynametags", "DisplayTagsTypes"
 	Option "$HUDMNU_NAMETAGCOLOR",			"nametagcolor", "TextColors", "displaynametags"
-	Option "$HUDMNU_OLDOUCH",				"st_oldouch", "OnOff"
 	StaticText " "
 	Slider "$DSPLYMNU_MOVEBOB",				"movebob", 0, 1.0, 0.05, 2
 	Slider "$DSPLYMNU_STILLBOB",			"stillbob", 0, 1.0, 0.05, 2
@@ -1040,20 +1063,10 @@ OptionMenu "HUDOptions" protected
 	StaticText " "
 	Slider "$DSPLYMNU_MENUDIM",					"dimamount", 0, 1.0, 0.05, 2
 	ColorPicker "$DSPLYMNU_DIMCOLOR",			"dimcolor"
-
-}
-
-OptionMenu "FlashOptions" protected
-{
-	Title "$HUDMNU_FLASH"
-	Option "$HUDMNU_HEXENFLASHES",			"pf_hexenweaps", "ZDoomHexen"
-	Option "$HUDMNU_POISONFLASHES",			"pf_poison", "ZDoomHexen"
-	Option "$HUDMNU_ICEFLASHES",			"pf_ice", "ZDoomHexen"
-	Option "$HUDMNU_HAZARDFLASHES",			"pf_hazard", "ZDoomStrife"
 	StaticText " "
 	Slider "$DSPLYMNU_BLOODFADE",				"blood_fade_scalar", 0.0, 1.0, 0.05, 2
 	Slider "$DSPLYMNU_PICKUPFADE",				"pickup_fade_scalar", 0.0, 1.0, 0.05, 2
-	Slider "$DSPLYMNU_WATERFADE",				"underwater_fade_scalar", 0.0, 1.0, 0.05, 2
+
 }
 
 OptionMenu "ScalingOptions" protected
@@ -1161,6 +1174,67 @@ OptionMenu "AltHUDOptions" protected
 
 //-------------------------------------------------------------------------------------------
 //
+// Accessibility Menu (convert to LANGUAGE.csv-compatable strings)
+//
+//-------------------------------------------------------------------------------------------
+//As it's the typical thing to do in a modern game, here's that usual "accessibility menu".
+
+OptionValue usemodes
+{
+	0,	"Tap (default)"
+	1,	"Hold (1 sec. to cry)"
+}
+
+OptionMenu "AccessibilityOptions" protected
+{
+	Title "Accessibility Options"
+	Submenu "Vision",		"AccessibilityVision"
+	Submenu "Hearing",		"AccessibilityHearing"
+	Submenu "Dexterity",	"AccessibilityDexterity"
+	StaticText " "
+	StaticText "Select a category above."
+}
+
+OptionMenu "AccessibilityVision" protected
+{
+	Title "Vision Options"
+	StaticText "The below options will not guarantee avoiding seizures."
+	StaticText "If you start feeling strange during gameplay, stop playing immediately."
+	StaticText " "
+	
+	Slider "$DSPLYMNU_SATURATION",				"vid_saturation",	-3.0, 3.0, 0.25, 2
+	Slider "$DSPLYMNU_QUAKEINTENSITY",			"r_quakeintensity",	0.0, 1.0, 0.05, 2
+	StaticText " "
+	
+	StaticText "GZDoom screen fades"
+	Slider "$DSPLYMNU_BLOODFADE",				"blood_fade_scalar", 0.0, 1.0, 0.05, 2
+	Slider "$DSPLYMNU_PICKUPFADE",				"pickup_fade_scalar", 0.0, 1.0, 0.05, 2
+	Option "Other fades & flashes",				"ac_reduceflashing",	"OffOn"
+}
+
+OptionMenu "AccessibilityHearing" protected
+{
+	Title "Hearing Options"
+	StaticText "Subtitles in Magical Mary 1 are not that effective."
+	StaticText "These show important dialogue, but do not indicate direction."
+	StaticText "If any programmer is willing to program native subtitles into"
+	StaticText "this engine for me, fork Xane123/MagicalMary1 repo on GitHub and"
+	StaticText "send me a pull request! (Also, controller rumble support, please.)"
+	StaticText " "
+	Option "Subtitles",							"ac_subtitles",		"OnOff"
+}
+
+OptionMenu "AccessibilityDexterity" protected
+{
+	Title "Dexterity Options"
+	StaticText "When the setting below is HOLD, you only need to hold USE for"
+	StaticText "half a second to fire your claw and a whole second to cry."
+	StaticText " "
+	Option "Reduce button mashing",				"ac_reducemashing",	"usemodes"
+}
+
+//-------------------------------------------------------------------------------------------
+//
 // Misc menu
 //
 //-------------------------------------------------------------------------------------------
@@ -1170,20 +1244,6 @@ OptionValue Autosave
 	0,	"$OPTVAL_ALWAYS"
 	1,	"$OPTVAL_SCRIPTSONLY"
 	2,	"$OPTVAL_NEVER"
-}
-
-OptionValue dehopt
-{
-	0,	"$OPTVAL_NEVER"
-	1,	"$OPTVAL_ALL"
-	2,	"$OPTVAL_ONLYLASTONE"
-}
-
-OptionValue AlwaysTally
-{
-	0,	"$OPTVAL_MODDEFINED"
-	1,	"$OPTVAL_NOTHUBS"
-	2,	"$OPTVAL_WITHHUBS"
 }
 
 OptionMenu "MiscOptions" protected
@@ -1202,16 +1262,12 @@ OptionMenu "MiscOptions" protected
 	Option "$MISCMNU_QUERYIWAD",				"queryiwad", "OnOff"
 	StaticText " "
 	Option "$MISCMNU_NOCHEATS",					"nocheats", "OnOff"
-	Option "$MISCMNU_ALLCHEATS",				"allcheats", "OnOff"
 	Option "$MISCMNU_ENABLEAUTOSAVES",			"disableautosave", "Autosave"
 	Option "$MISCMNU_SAVELOADCONFIRMATION",		"saveloadconfirmation", "OnOff"
 	Slider "$MISCMNU_AUTOSAVECOUNT",			"autosavecount", 1, 20, 1, 0
 	Option "$MISCMNU_QUICKSAVEROTATION",		"quicksaverotation", "OnOff"
 	Slider "$MISCMNU_QUICKSAVECOUNT",			"quicksaverotationcount", 1, 20, 1, 0
-	Option "$MISCMNU_DEHLOAD",					"dehload", "dehopt"
-	Option "$MISCMNU_ENABLESCRIPTSCREENSHOTS",	"enablescriptscreenshot", "OnOff"
 	Option "$MISCMNU_SETSLOTSTRICT",			"setslotstrict", "YesNo"
-	Option "$MISCMNU_INTERSCROLL",				"nointerscrollabort", "OffOn"
 	StaticText " "
 	Option "$MISCMNU_CACHENODES",				"gl_cachenodes", "OnOff"
 	Slider "$MISCMNU_CACHETIME",				"gl_cachetime", 0.0, 2.0, 0.1
@@ -1222,19 +1278,8 @@ OptionMenu "MiscOptions" protected
 	StaticText " "
 	Option "$MISCMNU_QUICKEXIT",				"m_quickexit", "OnOff"
 
-	IfOption(Windows)
-	{
-		StaticText " "
-		Option	"$DSPLYMNU_SHOWENDOOM",			"showendoom", "Endoom"
-	}
 	StaticText " "
-	Option "$MISCMNU_CLEANMENU",				"m_cleanscale", "OffOn"
-	Option "$MISCMNU_CLEANSTAT",				"wi_cleantextscale", "OnOff"
-	Option "$MISCMNU_WIPERCENT",				"wi_percents", "OnOff"
-
-	StaticText " "
-	Option "$MISCMNU_ALWAYSTALLY",				"sv_alwaystally", "AlwaysTally"
-	
+	Option "$MISCMNU_CLEANMENU",				"m_cleanscale", "OffOn"	
 }
 
 //-------------------------------------------------------------------------------------------
@@ -1313,8 +1358,8 @@ OptionMenu AutomapOptions protected
 {
 	Title "$AUTOMAPMNU_TITLE"
 
-	Option "$AUTOMAPMNU_COLORSET",				"am_colorset", "MapColorTypes"
-	Option "$AUTOMAPMNU_CUSTOMCOLORS",			"am_customcolors", "YesNo"
+	//Option "$AUTOMAPMNU_COLORSET",				"am_colorset", "MapColorTypes"
+	//Option "$AUTOMAPMNU_CUSTOMCOLORS",			"am_customcolors", "YesNo"
 	Submenu "$AUTOMAPMNU_SETCUSTOMCOLORS",		"MapColorMenu"
 
 	StaticText ""
@@ -1683,126 +1728,6 @@ OptionMenu CoopOptions protected
 
 /*=======================================
  *
- * Compatibility Options Menu
- *
- *=======================================*/
-
-
-OptionValue CompatModes
-{
-	0, "$OPTVAL_DEFAULT"
-	1, "$OPTVAL_DOOM"
-	2, "$OPTVAL_DOOMSTRICT"
-	3, "$OPTVAL_BOOM"
-	6, "$OPTVAL_BOOMSTRICT"
-	5, "$OPTVAL_MBF"
-	7, "$OPTVAL_MBFSTRICT"
-	4, "$OPTVAL_ZDOOM2063"
-}
-
-OptionMenu "CompatibilityOptions" protected
-{
-	Position -35
-	Title "$CMPTMNU_TITLE"
-	Option "$CMPTMNU_MODE",							"compatmode", "CompatModes", "", 1
-	StaticText " "
-	Submenu "$CMPTMNU_ACTORBEHAVIOR",				"CompatActorMenu"
-	Submenu "$CMPTMNU_DEHACKEDBEHAVIOR",			"CompatDehackedMenu"
-	Submenu "$CMPTMNU_MAPACTIONBEHAVIOR",			"CompatMapMenu"
-	Submenu "$CMPTMNU_PHYSICSBEHAVIOR",				"CompatPhysicsMenu"
-	Submenu "$CMPTMNU_RENDERINGBEHAVIOR",			"CompatRenderMenu"
-	Submenu "$CMPTMNU_SOUNDBEHAVIOR",				"CompatSoundMenu"
-	Class "CompatibilityMenu"
-}
-
-OptionMenu "CompatActorMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_ACTORBEHAVIOR"
-	Option "$CMPTMNU_CORPSEGIBS",					"compat_CORPSEGIBS", "YesNo"
-	Option "$CMPTMNU_NOBLOCKFRIENDS",				"compat_NOBLOCKFRIENDS", "YesNo"
-	Option "$CMPTMNU_LIMITPAIN",					"compat_LIMITPAIN", "YesNo"
-	Option "$CMPTMNU_MBFMONSTERMOVE",				"compat_MBFMONSTERMOVE", "YesNo"
-	Option "$CMPTMNU_CROSSDROPOFF",					"compat_CROSSDROPOFF", "YesNo"
-	Option "$CMPTMNU_DROPOFF",						"compat_DROPOFF", "YesNo"
-	Option "$CMPTMNU_INVISIBILITY",					"compat_INVISIBILITY", "YesNo"
-	Option "$CMPTMNU_MINOTAUR",						"compat_MINOTAUR", "YesNo"
-	Option "$CMPTMNU_NOTOSSDROPS",					"compat_NOTOSSDROPS", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-OptionMenu "CompatDehackedMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_DEHACKEDBEHAVIOR"
-	Option "$CMPTMNU_DEHHEALTH",					"compat_DEHHEALTH", "YesNo"
-	Option "$CMPTMNU_MUSHROOM",						"compat_MUSHROOM", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-OptionMenu "CompatMapMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_MAPACTIONBEHAVIOR"
-	Option "$CMPTMNU_USEBLOCKING",					"compat_USEBLOCKING", "YesNo"
-	Option "$CMPTMNU_ANYBOSSDEATH",					"compat_ANYBOSSDEATH", "YesNo"
-	Option "$CMPTMNU_NODOORLIGHT",					"compat_NODOORLIGHT", "YesNo"
-	Option "$CMPTMNU_LIGHT",						"compat_LIGHT", "YesNo"
-	Option "$CMPTMNU_SHORTTEX",						"compat_SHORTTEX", "YesNo"
-	Option "$CMPTMNU_STAIRS",						"compat_stairs", "YesNo"
-	Option "$CMPTMNU_FLOORMOVE",					"compat_floormove", "YesNo"
-	Option "$CMPTMNU_POINTONLINE",					"compat_pointonline", "YesNo"
-	Option "$CMPTMNU_MULTIEXIT",					"compat_multiexit", "YesNo"
-	Option "$CMPTMNU_TELEPORT",						"compat_teleport", "YesNo"
-	Option "$CMPTMNU_PUSHWINDOW",					"compat_pushwindow", "YesNo"
-	Option "$CMPTMNU_CHECKSWITCHRANGE",				"compat_checkswitchrange", "YesNo"
-	Option "$CMPTMNU_RAILINGHACK",					"compat_railing", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-OptionMenu "CompatPhysicsMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_PHYSICSBEHAVIOR"
-	Option "$CMPTMNU_NOPASSOVER",					"compat_nopassover", "YesNo"
-	Option "$CMPTMNU_BOOMSCROLL",					"compat_BOOMSCROLL", "YesNo"
-	Option "$CMPTMNU_BADANGLES",					"compat_badangles", "YesNo"
-	Option "$CMPTMNU_WALLRUN",						"compat_WALLRUN", "YesNo"
-	Option "$CMPTMNU_RAVENSCROLL",					"compat_RAVENSCROLL", "YesNo"
-	Option "$CMPTMNU_TRACE",						"compat_TRACE", "YesNo"
-	Option "$CMPTMNU_HITSCAN",						"compat_HITSCAN", "YesNo"
-	Option "$CMPTMNU_MISSILECLIP",					"compat_MISSILECLIP", "YesNo"
-	Option "$CMPTMNU_EXPLODE1",						"compat_explode1", "YesNo"
-	Option "$CMPTMNU_EXPLODE2",						"compat_explode2", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-
-OptionMenu "CompatRenderMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_RENDERINGBEHAVIOR"
-	Option "$CMPTMNU_POLYOBJ",						"compat_POLYOBJ", "YesNo"
-	Option "$CMPTMNU_MASKEDMIDTEX",					"compat_MASKEDMIDTEX", "YesNo"
-	Option "$CMPTMNU_SPRITESORT",					"compat_SPRITESORT", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-OptionMenu "CompatSoundMenu" protected
-{
-	Position -35
-	Title "$CMPTMNU_SOUNDBEHAVIOR"
-	Option "$CMPTMNU_SOUNDSLOTS",					"compat_soundslots", "YesNo"
-	Option "$CMPTMNU_SILENTPICKUP",					"compat_SILENTPICKUP", "YesNo"
-	Option "$CMPTMNU_SILENTINSTANTFLOORS",			"compat_silentinstantfloors", "YesNo"
-	Option "$CMPTMNU_SECTORSOUNDS",					"compat_SECTORSOUNDS", "YesNo"
-	Option "$CMPTMNU_SOUNDCUTOFF",					"compat_soundcutoff", "YesNo"
-	Option "$CMPTMNU_SOUNDTARGET",					"compat_SOUNDTARGET", "YesNo"
-	Class "CompatibilityMenu"
-}
-
-/*=======================================
- *
  * Sound Options Menu
  *
  *=======================================*/
@@ -1849,6 +1774,12 @@ OptionValue BufferCounts
 	  12, "12"
 }
 
+OptionValue MusicVersions
+{
+	0, "Instrumental (default)"
+	1, "Vocals (not implemented)"
+	2, "Karaoke (not implemented)"
+}
 
 OptionString ALDevices
 {
@@ -1903,12 +1834,13 @@ OptionMenu SoundOptions protected
 	StaticText " "
 	Slider "$SNDMNU_SFXVOLUME",			"snd_sfxvolume", 0, 1, 0.05, 2
 	Slider "$SNDMNU_MUSICVOLUME",		"snd_musicvolume", 0, 1, 0.05, 2
+	Option "$SNDMNU_MUSICVERSION",		"snd_musicversion", "MusicVersions"
 	StaticText " "
 	Slider "$SNDMNU_MENUVOLUME",		"snd_menuvolume", 0, 1, 0.05, 2
+	//StaticText " "
+	//Option "$SNDMNU_MIDIDEVICE",		"snd_mididevice", "MidiDevices"
 	StaticText " "
-	Option "$SNDMNU_MIDIDEVICE",		"snd_mididevice", "MidiDevices"
-	StaticText " "
-	Option "$SNDMNU_UNDERWATERREVERB",	"snd_waterreverb", "OnOff"
+	//Option "$SNDMNU_UNDERWATERREVERB",	"snd_waterreverb", "OnOff"
 	Option "$SNDMNU_RANDOMIZEPITCHES",	"snd_pitched", "OnOff"
 	Slider "$SNDMNU_CHANNELS",			"snd_channels", 64, 256, 8, 0
 	StaticText " "
@@ -1951,13 +1883,13 @@ OptionMenu AdvSoundOptions protected
 
 	ifoption(openal)
 	{
-	StaticText " "
+		StaticText " "
 		Submenu "$SNDMNU_OPENAL",		"OpenALSoundItems"
 	}
 
-	StaticText " "
-	Submenu "$SNDMNU_MIDIPLAYER",		"MidiPlayerOptions"
-	Submenu "$SNDMNU_MODREPLAYER",		"ModReplayerOptions"
+	//StaticText " "
+	//Submenu "$SNDMNU_MIDIPLAYER",		"MidiPlayerOptions"
+	//Submenu "$SNDMNU_MODREPLAYER",		"ModReplayerOptions"
 	StaticText " "
 	Command "$SNDMNU_RESTART",			"snd_reset"
 }
@@ -2376,15 +2308,6 @@ OptionValue "FilterModes"
 	4, "$OPTVAL_TRILINEAR"
 }
 
-OptionValue "TonemapModes"
-{
-	0, "$OPTVAL_OFF"
-	1, "$OPTVAL_UNCHARTED2"
-	2, "$OPTVAL_HEJLDAWSON"
-	3, "$OPTVAL_REINHARD"
-	5, "$OPTVAL_PALETTE"
-}
-
 OptionValue "SSAOModes"
 {
 	0, "$OPTVAL_OFF"
@@ -2429,14 +2352,9 @@ OptionValue "Colormaps"
 
 OptionValue "LightingModes"
 {
-	0, "$OPTVAL_STANDARD"
 	1, "$OPTVAL_BRIGHT"
-	2, "$OPTVAL_DOOM"
-	3, "$OPTVAL_DARK"
 	4, "$OPTVAL_LEGACY"
-	5, "$OPTVAL_BUILD"
 	8, "$OPTVAL_SOFTWARE"
-	16, "$OPTVAL_VANILLA"
 }
 
 OptionValue "Precision"
@@ -2454,8 +2372,6 @@ OptionValue "DitherModes"
 	6, "$OPTVAL_SUBTLE"
 	6, "6 BPC"
 	8, "8 BPC"
-	10, "10 BPC"
-	12, "12 BPC"
 }
 
 OptionValue "BillboardModes"
@@ -2557,6 +2473,15 @@ OptionValue ShadowMapFilter
 	3, "$OPTVAL_PCF_HIGH"
 }
 
+OptionValue TonemapPowTables
+{
+	0.2,	"Weird"
+	0.5,	"Almost weird"
+	1.25,	"Default"
+	2.0,	"GZDoom"
+	2.5,	"Strong"
+}
+
 
 OptionMenu "GLTextureGLOptions" protected
 {
@@ -2599,22 +2524,22 @@ OptionMenu "GLLightOptions" protected
 OptionMenu "OpenGLOptions" protected
 {
 	Title "$GLMNU_TITLE"
-	Submenu "$GLPREFMNU_VRMODE",				"VR3DMenu"
+	//Submenu "$GLPREFMNU_VRMODE",				"VR3DMenu"
 	Submenu "$GLMNU_POSTPROCESS",				"PostProcessMenu"
 	StaticText " "
 	Option "$GLPREFMNU_SECLIGHTMODE",			gl_lightmode,					"LightingModes"
 	Option "$GLPREFMNU_SWLMBANDED",				gl_bandedswlight,				"OnOff"
 	Option "$GLPREFMNU_FOGMODE",				gl_fogmode,						"FogMode"
+	Option "$GLPREFMNU_HORRORFOG",				gl_foghorror,					"OnOff"
 	Option "$GLPREFMNU_FOGFORCEFULLBRIGHT",		gl_brightfog,					"YesNo"
-	Slider "$GLPREFMNU_WPNLIGHTSTR",			gl_weaponlight,					0,32, 2
-	Option "$GLPREFMNU_ENVIRONMENTMAPMIRROR",	gl_mirror_envmap,				"OnOff"
-	Option "$GLPREFMNU_ENV",					gl_enhanced_nightvision,		"OnOff"
-	Option "$GLPREFMNU_ENVSTEALTH",				gl_enhanced_nv_stealth,			"EnhancedStealth"
-	Option "$GLPREFMNU_SPRCLIP",				gl_spriteclip,					"SpriteclipModes"
-	Option "$GLPREFMNU_SPRBLEND",				gl_sprite_blend,				"OnOff"
-	Option "$GLPREFMNU_FUZZSTYLE",				gl_fuzztype,					"FuzzStyle"
+	StaticText " "
 	Option "$GLPREFMNU_SPRBILLBOARD",			gl_billboard_mode,				"BillboardModes"
 	Option "$GLPREFMNU_SPRBILLFACECAMERA",		gl_billboard_faces_camera,		"OnOff"
+	StaticText " "
+	Slider "$GLPREFMNU_WPNLIGHTSTR",			gl_weaponlight,					0,32, 2
+	Option "$GLPREFMNU_ENVIRONMENTMAPMIRROR",	gl_mirror_envmap,				"OnOff"
+	Option "$GLPREFMNU_SPRBLEND",				gl_sprite_blend,				"OnOff"
+	Option "$GLPREFMNU_FUZZSTYLE",				gl_fuzztype,					"FuzzStyle"
 	Option "$GLPREFMNU_PARTICLESTYLE",			gl_particles_style,				"Particles"
 	Option "$GLPREFMNU_RENDERQUALITY",			gl_render_precise,				"Precision"
 	StaticText " "
@@ -2644,9 +2569,10 @@ OptionMenu "PostProcessMenu" protected
 	Slider "$GLPREFMNU_SSAO_PORTALS",			gl_ssao_portals,				0.0, 4.0, 1.0, 0
 	Option "$GLPREFMNU_FXAA",		 			gl_fxaa,						"FXAAQuality"
 	Option "$GLPREFMNU_DITHER",		 			gl_dither_bpc,					"DitherModes"
-	Option "$GLPREFMNU_TONEMAP", 				gl_tonemap,						"TonemapModes"
+	//Option "$GLPREFMNU_TONEMAP", 				gl_tonemap,						"TonemapModes"
 	StaticText " "
-	Slider "$GLPREFMNU_PALTONEMAPPOWER",		gl_paltonemap_powtable,			0.2, 3.0, 0.1, 1
+	//Slider "$GLPREFMNU_PALTONEMAPPOWER",		gl_paltonemap_powtable,			0.2, 3.0, 0.1, 1
+	Option "$GLPREFMNU_PALTONEMAPPOWER", 		gl_paltonemap_powtable,			"TonemapPowTables"
 	Option "$GLPREFMNU_PALTONEMAPORDER",		gl_paltonemap_reverselookup,	"LookupOrder"
 }
 

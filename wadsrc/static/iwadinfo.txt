@@ -8,7 +8,7 @@ IWad
 	Config = "Doom"
 	Mapinfo = "mapinfo/doom2.txt"
 	BannerColors = "ff a0 d0", "8d 6c ae"
-	Load = "MagicalMary2.pk3", "MagicalMary3.pk3", "mm1_maps.wad", "mod_mobile.pk3", "mod_materials.pk3", "mod_hires.pk3", "mod_vr.pk3"
+	Load = "MagicalMary2.pk3", "MagicalMary3.pk3", "mm1_maps.wad", "mod_mobile.pk3", "mod_materials.pk3", "mod_hires.pk3", "MagicalMary_ImprovedSound.pk3"
 }
 
 Names

@@ -32,6 +32,7 @@
 #include "hw_lighting.h"
 #include "hw_cvars.h"
 
+EXTERN_CVAR(Bool, gl_foghorror)
 
 //==========================================================================
 //
@@ -145,6 +146,12 @@ void HWDrawInfo::SetFog(FRenderState &state, int lightlevel, int rellight, bool 
 		if (isadditive)
 		{
 			fogcolor = 0;
+		}
+
+		if (gl_foghorror)
+		{	// [XANE]If spooky fog is enabled, make all fog black, like a horror game!
+			fogcolor = 0x201028;
+			fogdensity = 128;
 		}
 
 		state.EnableFog(true);

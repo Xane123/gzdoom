@@ -512,6 +512,10 @@ public:
 	int			partnum;			// [XANE]Level part number, for levels that come in multple parts.
 	int			songid;				// [XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
 	int			foliagecolor;		// [XANE]Color used by tree leaf clusters and grass.
+	int			leveltype;
+	int			timeofday;
+	int			override_time;
+	
 	int			lumpnum;
 	FString		LevelName;
 	FString		MapName;			// the lump name (E1M1, MAP01, etc)

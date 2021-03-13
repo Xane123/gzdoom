@@ -72,19 +72,19 @@ CUSTOM_CVAR(Int, gl_ssao_portals, 0, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 
 CVAR(Float, gl_ssao_strength, 0.7f, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 CVAR(Int, gl_ssao_debug, 0, 0)
-CVAR(Float, gl_ssao_bias, 0.2f, 0)
-CVAR(Float, gl_ssao_radius, 80.0f, 0)
-CUSTOM_CVAR(Float, gl_ssao_blur, 16.0f, 0)
+CVAR(Float, gl_ssao_bias, 0.2f, CVAR_ARCHIVE)
+CVAR(Float, gl_ssao_radius, 80.0f, CVAR_ARCHIVE)
+CUSTOM_CVAR(Float, gl_ssao_blur, 16.0f, CVAR_ARCHIVE)
 {
 	if (self < 0.1f) self = 0.1f;
 }
 
-CUSTOM_CVAR(Float, gl_ssao_exponent, 1.8f, 0)
+CUSTOM_CVAR(Float, gl_ssao_exponent, 1.8f, CVAR_ARCHIVE)
 {
 	if (self < 0.1f) self = 0.1f;
 }
 
-CUSTOM_CVAR(Float, gl_paltonemap_powtable, 2.0f, CVAR_ARCHIVE | CVAR_NOINITCALL)
+CUSTOM_CVAR(Float, gl_paltonemap_powtable, 1.25f, CVAR_ARCHIVE | CVAR_NOINITCALL)
 {
 	screen->UpdatePalette();
 }
