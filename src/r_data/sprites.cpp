@@ -974,14 +974,14 @@ void R_InitSprites ()
 	unsigned numskins;
 
 	// [RH] Create a standard translation to map skins between Heretic and Doom
-	if (gameinfo.gametype == GAME_DoomChex)
+	/*if (gameinfo.gametype == GAME_DoomChex)
 	{
 		R_CreateSkinTranslation ("SPALHTIC");
 	}
 	else
 	{
 		R_CreateSkinTranslation ("SPALDOOM");
-	}
+	}*/
 
 	// [RH] Count the number of skins.
 	numskins = PlayerClasses.Size ();

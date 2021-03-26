@@ -44,7 +44,7 @@
 #include "printf.h"
 
 
-CUSTOM_CVAR(Int, gl_fogmode, 1, CVAR_ARCHIVE | CVAR_NOINITCALL)
+CUSTOM_CVAR(Int, gl_fogmode, 2, CVAR_ARCHIVE | CVAR_NOINITCALL)
 {
 	if (self > 2) self = 2;
 	if (self < 0) self = 0;
@@ -53,8 +53,8 @@ CUSTOM_CVAR(Int, gl_fogmode, 1, CVAR_ARCHIVE | CVAR_NOINITCALL)
 
 // OpenGL stuff moved here
 // GL related CVARs
-CVAR(Bool, gl_portals, true, 0)
-CVAR(Bool,gl_mirrors,true,0)	// This is for debugging only!
+CVAR(Bool, gl_portals, true, CVAR_ARCHIVE)
+CVAR(Bool,gl_mirrors,true,CVAR_ARCHIVE)	// This is for debugging only!
 CVAR(Bool,gl_mirror_envmap, true, CVAR_GLOBALCONFIG|CVAR_ARCHIVE)
 CVAR(Bool, gl_seamless, false, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
 
@@ -64,10 +64,11 @@ CUSTOM_CVAR(Int, r_mirror_recursions,4,CVAR_GLOBALCONFIG|CVAR_ARCHIVE)
 	if (self>10) self=10;
 }
 bool gl_plane_reflection_i;	// This is needed in a header that cannot include the CVAR stuff...
-CUSTOM_CVAR(Bool, gl_plane_reflection, true, CVAR_GLOBALCONFIG|CVAR_ARCHIVE)
+CUSTOM_CVARD(Bool, gl_plane_reflection, true, CVAR_GLOBALCONFIG|CVAR_ARCHIVE, "Allows proper floor/ceiling reflections. (Doesn't affect 3D floors due to limitations.)")
 {
 	gl_plane_reflection_i = self;
 }
+CVARD(Bool, gl_materials, true, CVAR_ARCHIVE, "If set, shiny surfaces that reflect dynamic lights are enabled. Requires a game restart to take effect.")
 
 CUSTOM_CVAR(Bool, gl_render_precise, false, CVAR_ARCHIVE|CVAR_GLOBALCONFIG)
 {
@@ -120,12 +121,13 @@ CVAR(Int, gl_satformula, 1, CVAR_ARCHIVE|CVAR_GLOBALCONFIG);
 // Texture CVARs
 //
 //==========================================================================
-CUSTOM_CVARD(Float, gl_texture_filter_anisotropic, 8, CVAR_ARCHIVE | CVAR_GLOBALCONFIG | CVAR_NOINITCALL, "changes the OpenGL texture anisotropy setting")
+CUSTOM_CVARD(Float, gl_texture_filter_anisotropic, 4, CVAR_ARCHIVE | CVAR_GLOBALCONFIG | CVAR_NOINITCALL, "Changes the OpenGL texture anisotropy setting. Setting to 1 disables it, but introduces an odd ring in the sky when looking up.")
 {
+	if (self < 1 || self > 16) self = 4;	//[XANE] To prevent crashes, this CVar can't be below 1 or above 16.
 	screen->SetTextureFilterMode();
 }
 
-CUSTOM_CVARD(Int, gl_texture_filter, 4, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL, "changes the texture filtering settings")
+CUSTOM_CVARD(Int, gl_texture_filter, 6, CVAR_ARCHIVE|CVAR_GLOBALCONFIG|CVAR_NOINITCALL, "Changes the texture filtering settings")
 {
 	if (self < 0 || self > 6) self=4;
 	screen->SetTextureFilterMode();
@@ -136,5 +138,9 @@ CVAR(Bool, gl_precache, false, CVAR_ARCHIVE)
 
 CUSTOM_CVAR(Int, gl_shadowmap_filter, 1, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 {
-	if (self < 0 || self > 8) self = 1;
+	if (self < 0 || self > 8)
+	{
+		Printf("The provided number is out of range.");
+		self = 1;
+	}
 }

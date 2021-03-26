@@ -393,12 +393,14 @@ struct level_info_t
 	FString		acsName;
 	bool		fs_nocheckposition;
 
-	int			partnum;		//[XANE]Level part number, for levels that come in multple parts.
-	int			songid;			//[XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
-	int			foliagecolor;	//[XANE]Color used by tree leaf clusters and grass.
-	int			leveltype;		//[XANE]Type of level.
-	int			timeofday;		//[XANE]Enables the time-of-day system if over 0. The number determines the property/color/sky property set used.
-	int			override_time;	//[XANE]If over -1, forcibly starts the level at the given time of day. If the ToD system's disabled, takes effect on the next level.
+	int			partnum;			//[XANE]Level part number, for levels that come in multple parts.
+	int			songid;				//[XANE]Which song ID to play at the beginning of this level. (not to be confused with "Music" and "musicorder", ZDoom's built-in MAPINFO properties.
+	int			foliagecolor;		//[XANE]Color used by tree leaf clusters and grass.
+	int			leveltype;			//[XANE]Type of level.
+	int			timeofday;			//[XANE]Enables the time-of-day system if over 0. The number determines the property/color/sky property set used.
+	int			overridetime;		//[XANE]If over -1, forcibly starts the level at the given time of day. If the ToD system's disabled, takes effect on the next level.
+	int			radioscreenline;	//[XANE]First linedef ID used for the animated radio screen. On-screen cover art objects start with this same number as their thing ID.
+	int			radiospeakertid;	//[XANE]Thing ID used by radio speakers in this level. If 0, the radio will use TID 99999, or the player's personal radio, if that's enabled.
 
 
 	level_info_t() 

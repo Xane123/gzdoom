@@ -29,6 +29,8 @@
 #include "c_cvars.h"
 #include "v_video.h"
 
+EXTERN_CVAR(Bool, gl_materials)
+
 static IHardwareTexture* (*layercallback)(int layer, int translation);
 
 void FMaterial::SetLayerCallback(IHardwareTexture* (*cb)(int layer, int translation))
@@ -80,7 +82,7 @@ FMaterial::FMaterial(FGameTexture * tx, int scaleflags)
 			{
 				mTextureLayers.Push({ texture, 0, -1 });
 			}
-			mShaderIndex = SHADER_Specular;
+			mShaderIndex = gl_materials ? SHADER_Specular : SHADER_Default;
 		}
 		else if (tx->Normal.get() && tx->Metallic.get() && tx->Roughness.get() && tx->AmbientOcclusion.get())
 		{
@@ -88,7 +90,7 @@ FMaterial::FMaterial(FGameTexture * tx, int scaleflags)
 			{
 				mTextureLayers.Push({ texture, 0, -1 });
 			}
-			mShaderIndex = SHADER_PBR;
+			mShaderIndex = gl_materials ? SHADER_PBR : SHADER_Default;
 		}
 
 		// Note that these layers must present a valid texture even if not used, because empty TMUs in the shader are an undefined condition.

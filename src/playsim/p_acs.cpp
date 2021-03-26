@@ -528,7 +528,9 @@
 		LEVELINFO_FOLIAGE_COLOR,
 		LEVELINFO_TYPE,
 		LEVELINFO_TIMEOFDAY_ON,
-		LEVELINFO_NEXTMAP_TIME
+		LEVELINFO_NEXTMAP_TIME,
+		LEVELINFO_RADIO_LINE,
+		LEVELINFO_SPEAKER_TID
 	};
 	enum {
 		PLAYERINFO_TEAM,
@@ -9783,7 +9785,9 @@ scriptwait:
 			case LEVELINFO_FOLIAGE_COLOR:	STACK(1) = Level->foliagecolor;		break;	//[XANE]Color used by tree leaf clusters and grass.
 			case LEVELINFO_TYPE:			STACK(1) = Level->leveltype;		break;
 			case LEVELINFO_TIMEOFDAY_ON:	STACK(1) = Level->timeofday;		break;
-			case LEVELINFO_NEXTMAP_TIME:	STACK(1) = Level->override_time;	break;
+			case LEVELINFO_NEXTMAP_TIME:	STACK(1) = Level->overridetime;		break;
+			case LEVELINFO_RADIO_LINE:		STACK(1) = Level->radioscreenline;	break;
+			case LEVELINFO_SPEAKER_TID:		STACK(1) = Level->radiospeakertid;	break;
 			default:						STACK(1) = 0;						break;
 			}
 			break;

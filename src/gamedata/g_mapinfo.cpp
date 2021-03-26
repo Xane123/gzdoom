@@ -304,10 +304,12 @@ void level_info_t::Reset()
 
 	partnum = 0;
 	songid = 0;
-	foliagecolor = 0;	//[XANE] Default to green grass parts/trees.
-	leveltype = 0;		//[XANE] Standard level type is the default.
-	timeofday = 0;		//[XANE] Disable the time-of-day system by default.
-	override_time = -1;	//[XANE] Don't force a speciic time of day by deault.
+	foliagecolor = 0;		//[XANE] Default to green grass parts/trees.
+	leveltype = 0;			//[XANE] Standard level type is the default.
+	timeofday = 0;			//[XANE] Disable the time-of-day system by default.
+	overridetime = -1;		//[XANE] Don't force a speciic time of day by default.
+	radioscreenline = 0;	//[XANE] There's no radio screen by default.
+	radiospeakertid = 0;	//[XANE] Neither is there a speaker by default.
 }
 
 
@@ -1581,12 +1583,27 @@ DEFINE_MAP_OPTION(timeofday, true)
 	info->timeofday = parse.sc.Number;
 }
 
-DEFINE_MAP_OPTION(override_time, true)
+DEFINE_MAP_OPTION(overridetime, true)
 {	//[XANE]Forces the time of day to this ID, given it's > -1. On levels where time of day's disabled, this sets the time of day that the next visited level will use.
 	parse.ParseAssign();
 	parse.sc.MustGetNumber();
-	info->override_time = parse.sc.Number;
+	info->overridetime = parse.sc.Number;
 }
+
+DEFINE_MAP_OPTION(radioscreenline, true)
+{	//[XANE]First linedef ID used for the animated radio screen. On-screen cover art objects start with this same number as their thing ID.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->radioscreenline = parse.sc.Number;
+}
+
+DEFINE_MAP_OPTION(radiospeakertid, true)
+{	//[XANE]Thing ID used by radio speakers in this level. If 0, the radio will use TID 99999, or the player's personal radio, if that's enabled.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->radiospeakertid = parse.sc.Number;
+}
+
 
 //==========================================================================
 //
