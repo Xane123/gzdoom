@@ -306,10 +306,12 @@ void level_info_t::Reset()
 	songid = 0;
 	foliagecolor = 0;		//[XANE] Default to green grass parts/trees.
 	leveltype = 0;			//[XANE] Standard level type is the default.
-	timeofday = 0;			//[XANE] Disable the time-of-day system by default.
-	overridetime = -1;		//[XANE] Don't force a speciic time of day by default.
+	timeofday = -1;			//[XANE] Disable the time-of-day system by default.
+	colorset = 0;			//[XANE] Default color set is chosen.
+	skyset = 0;				//[XANE] Peacewater sky set is used by default.
 	radioscreenline = 0;	//[XANE] There's no radio screen by default.
 	radiospeakertid = 0;	//[XANE] Neither is there a speaker by default.
+	specialstageno = 0;		//[XANE] Levels aren't Special Stages by default.
 }
 
 
@@ -954,12 +956,6 @@ DEFINE_MAP_OPTION(secretnext, true)
 	parse.ParseNextMap(info->NextSecretMap);
 }
 
-DEFINE_MAP_OPTION(secret, true) // Just an alias for secretnext, for Vavoom compatibility
-{
-	parse.ParseAssign();
-	parse.ParseNextMap(info->NextSecretMap);
-}
-
 DEFINE_MAP_OPTION(cluster, true)
 {
 	parse.ParseAssign();
@@ -1577,17 +1573,24 @@ DEFINE_MAP_OPTION(leveltype, true)
 }
 
 DEFINE_MAP_OPTION(timeofday, true)
-{	//[XANE]If non-zero, enables the time of day system. Number determines color/sky property set.
+{	//[XANE]If not -1, marks the map as time-of-day compatible! If time-of-day is turned off by the user, the time of day ID here will be forcibly applied.
 	parse.ParseAssign();
 	parse.sc.MustGetNumber();
 	info->timeofday = parse.sc.Number;
 }
 
-DEFINE_MAP_OPTION(overridetime, true)
-{	//[XANE]Forces the time of day to this ID, given it's > -1. On levels where time of day's disabled, this sets the time of day that the next visited level will use.
+DEFINE_MAP_OPTION(colorset, true)
+{	//[XANE]The set of light and fog colors that will be used for the time-of-day system. 0 is standard.
 	parse.ParseAssign();
 	parse.sc.MustGetNumber();
-	info->overridetime = parse.sc.Number;
+	info->colorset = parse.sc.Number;
+}
+
+DEFINE_MAP_OPTION(skyset, true)
+{	//[XANE]The pairs of sky images used for different times of day. 0 is for Peacewater.
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->skyset = parse.sc.Number;
 }
 
 DEFINE_MAP_OPTION(radioscreenline, true)
@@ -1602,6 +1605,13 @@ DEFINE_MAP_OPTION(radiospeakertid, true)
 	parse.ParseAssign();
 	parse.sc.MustGetNumber();
 	info->radiospeakertid = parse.sc.Number;
+}
+
+DEFINE_MAP_OPTION(specialStageNumber, true)
+{	//[XANE]Indicates this level is a Special Stage, and which number it is (1-7).
+	parse.ParseAssign();
+	parse.sc.MustGetNumber();
+	info->specialstageno = parse.sc.Number;
 }
 
 

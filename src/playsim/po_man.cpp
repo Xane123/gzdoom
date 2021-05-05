@@ -329,7 +329,7 @@ bool EV_RotatePoly (FLevelLocals *Level, line_t *line, int polyNum, int speed, i
 
 	if ((poly = Level->GetPolyobj(polyNum)) == nullptr)
 	{
-		Printf("EV_RotatePoly: Invalid polyobj num: %d\n", polyNum);
+		if (polyNum > 0) Printf("EV_RotatePoly: Invalid polyobj num: %d\n", polyNum);
 		return false;
 	}
 	FPolyMirrorIterator it(poly);
@@ -413,7 +413,7 @@ bool EV_MovePoly (FLevelLocals *Level, line_t *line, int polyNum, double speed, 
 
 	if ((poly = Level->GetPolyobj(polyNum)) == nullptr)
 	{
-		Printf("EV_MovePoly: Invalid polyobj num: %d\n", polyNum);
+		if (polyNum > 0) Printf("EV_MovePoly: Invalid polyobj num: %d\n", polyNum);
 		return false;
 	}
 	FPolyMirrorIterator it(poly);
@@ -491,7 +491,7 @@ bool EV_MovePolyTo(FLevelLocals *Level, line_t *line, int polyNum, double speed,
 
 	if ((poly = Level->GetPolyobj(polyNum)) == nullptr)
 	{
-		Printf("EV_MovePolyTo: Invalid polyobj num: %d\n", polyNum);
+		if (polyNum > 0) Printf("EV_MovePolyTo: Invalid polyobj num: %d\n", polyNum);
 		return false;
 	}
 	FPolyMirrorIterator it(poly);
@@ -641,7 +641,7 @@ bool EV_OpenPolyDoor(FLevelLocals *Level, line_t *line, int polyNum, double spee
 
 	if ((poly = Level->GetPolyobj(polyNum)) == nullptr)
 	{
-		Printf("EV_OpenPolyDoor: Invalid polyobj num: %d\n", polyNum);
+		if (polyNum > 0) Printf("EV_OpenPolyDoor: Invalid polyobj num: %d\n", polyNum);
 		return false;
 	}
 	FPolyMirrorIterator it(poly);

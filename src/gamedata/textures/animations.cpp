@@ -654,7 +654,8 @@ void FTextureAnimator::ParseWarp(FScanner &sc)
 		if (warper->GetName().IsEmpty())
 		{
 			// long texture name: We cannot do warps on these due to the way the texture manager implements warping as a texture replacement.
-			sc.ScriptError ("You cannot use \"warp\" for long texture names.");
+			//sc.ScriptError ("You cannot use \"warp\" for long texture names.");
+			// [XANE] Strangely, warping still works despite using long texture names.
 		}
 
 

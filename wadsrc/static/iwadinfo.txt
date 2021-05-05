@@ -2,21 +2,36 @@
 
 IWad
 {
-	Name = "Magical Mary 1: Redthorn's Family Ransom"
-	Autoname = "mma.base"
+	Name = "Magical Mary 1 (late alpha)"
+	Autoname = "mm1.base"
 	Game = "Doom"
 	Config = "Doom"
 	Mapinfo = "mapinfo/doom2.txt"
+	MustContain = "This is MM1.txt"
 	BannerColors = "ff a0 d0", "8d 6c ae"
-	Load = "MagicalMary2.pk3", "MagicalMary3.pk3", "mm1_maps.wad", "mod_hires.pk3", "MagicalMary_ImprovedSound.pk3"
+	Load = "mod_hires.pk3", "mod_improvedSound.pk3"
+}
+
+IWad
+{
+	Name = "Magical Mary 1 (using GameData folder)"
+	Autoname = "mm1.base"
+	Game = "Doom"
+	Config = "Doom"
+	Mapinfo = "mapinfo/doom2.txt"
+	MustContain = "readme.txt"
+	BannerColors = "a0 d0 ff", "ae 8d 6c"
+	Load = "mod_hires.pk3", "mod_improvedSound.pk3"
 }
 
 Names
 {
-	"MagicalMary.ipk3"
+	"BaseGameData.ipk3"
+	"PlayGame.FolderStub.ipk3"
 }
 
 Order	// Order in the IWAD selection box
 {
 	"Magical Mary 1: Redthorn's Family Ransom"
+	"Magical Mary 1 (using GameData folder)"
 }

@@ -78,7 +78,7 @@ const char *KeyNames[NUM_KEYS] =
 	nullptr,	"PrevTrack",nullptr,	nullptr,	"KP-Enter",	"RCtrl",	nullptr,	nullptr,	//98
 	"Mute",		"Calculator","Play",	nullptr,	"Stop",		nullptr,	nullptr,	nullptr,	//A0
 	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	"VolDown",	nullptr,	//A8
-	"VolUp",	nullptr,	"WebHome",	"KP,",		nullptr,	"KP/",		nullptr,	"SysRq",	//B0
+	"VolUp",	nullptr,	"WebHome",	"KP,",		nullptr,	"KP/",		nullptr,	"PrtSc",	//B0
 	"RAlt",		nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	//B8
 	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	"Pause",	nullptr,	"Home",		//C0
 	"UpArrow",	"PgUp",		nullptr,	"LeftArrow",nullptr,	"RightArrow",nullptr,	"End",		//C8
@@ -86,49 +86,49 @@ const char *KeyNames[NUM_KEYS] =
 #ifdef __APPLE__
 	nullptr,	nullptr,	nullptr,	"Command",	nullptr,	"Apps",		"Power",	"Sleep",	//D8
 #else // !__APPLE__
-	nullptr,	nullptr,	nullptr,	"LWin",		"RWin",		"Apps",		"Power",	"Sleep",	//D8
+	nullptr,	nullptr,	nullptr,	"Windows",	"RWindows",	"Apps",		"Power",	"Sleep",	//D8
 #endif // __APPLE__
 	nullptr,	nullptr,	nullptr,	"Wake",		nullptr,	"Search",	"Favorites","Refresh",	//E0
-	"WebStop",	"WebForward","WebBack",	"MyComputer","Mail",	"MediaSelect",nullptr,	nullptr,	//E8
+	"Stop",		"Forward",	"Back",	"Computer",		"Mail",		"MediaSelect",nullptr,	nullptr,	//E8
 	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	//F0
 	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	nullptr,	//F8
 
 	// non-keyboard buttons that can be bound
-	"Mouse1",	"Mouse2",	"Mouse3",	"Mouse4",		// 8 mouse buttons
-	"Mouse5",	"Mouse6",	"Mouse7",	"Mouse8",
+	"LeftClick","MiddleClick","RightClick",	"MouseExtra1",		// 8 mouse buttons
+	"MouseExtra2",	"MouseExtra3",	"MouseExtra4",	"MouseExtra5",
 
-	"Joy1",		"Joy2",		"Joy3",		"Joy4",			// 128 joystick buttons!
-	"Joy5",		"Joy6",		"Joy7",		"Joy8",
-	"Joy9",		"Joy10",	"Joy11",	"Joy12",
-	"Joy13",	"Joy14",	"Joy15",	"Joy16",
-	"Joy17",	"Joy18",	"Joy19",	"Joy20",
-	"Joy21",	"Joy22",	"Joy23",	"Joy24",
-	"Joy25",	"Joy26",	"Joy27",	"Joy28",
-	"Joy29",	"Joy30",	"Joy31",	"Joy32",
-	"Joy33",	"Joy34",	"Joy35",	"Joy36",
-	"Joy37",	"Joy38",	"Joy39",	"Joy40",
-	"Joy41",	"Joy42",	"Joy43",	"Joy44",
-	"Joy45",	"Joy46",	"Joy47",	"Joy48",
-	"Joy49",	"Joy50",	"Joy51",	"Joy52",
-	"Joy53",	"Joy54",	"Joy55",	"Joy56",
-	"Joy57",	"Joy58",	"Joy59",	"Joy60",
-	"Joy61",	"Joy62",	"Joy63",	"Joy64",
-	"Joy65",	"Joy66",	"Joy67",	"Joy68",
-	"Joy69",	"Joy70",	"Joy71",	"Joy72",
-	"Joy73",	"Joy74",	"Joy75",	"Joy76",
-	"Joy77",	"Joy78",	"Joy79",	"Joy80",
-	"Joy81",	"Joy82",	"Joy83",	"Joy84",
-	"Joy85",	"Joy86",	"Joy87",	"Joy88",
-	"Joy89",	"Joy90",	"Joy91",	"Joy92",
-	"Joy93",	"Joy94",	"Joy95",	"Joy96",
-	"Joy97",	"Joy98",	"Joy99",	"Joy100",
-	"Joy101",	"Joy102",	"Joy103",	"Joy104",
-	"Joy105",	"Joy106",	"Joy107",	"Joy108",
-	"Joy109",	"Joy110",	"Joy111",	"Joy112",
-	"Joy113",	"Joy114",	"Joy115",	"Joy116",
-	"Joy117",	"Joy118",	"Joy119",	"Joy120",
-	"Joy121",	"Joy122",	"Joy123",	"Joy124",
-	"Joy125",	"Joy126",	"Joy127",	"Joy128",
+	"(1)",	"(2)",	"(3)",	"(4)",			// 128 joystick buttons!
+	"(5)",	"(6)",	"(7)",	"(8)",
+	"(9)",	"(10)",	"(11)",	"(12)",
+	"(13)",	"(14)",	"(15)",	"(16)",
+	"(17)",	"(18)",	"(19)",	"(20)",
+	"(21)",	"(22)",	"(23)",	"(24)",
+	"(25)",	"(26)",	"(27)",	"(28)",
+	"(29)",	"(30)",	"(31)",	"(32)",
+	"(33)",	"(34)",	"(35)",	"(36)",
+	"(37)",	"(38)",	"(39)",	"(40)",
+	"(41)",	"(42)",	"(43)",	"(44)",
+	"(45)",	"(46)",	"(47)",	"(48)",
+	"(49)",	"(50)",	"(51)",	"(52)",
+	"(53)",	"(54)",	"(55)",	"(56)",
+	"(57)",	"(58)",	"(59)",	"(60)",
+	"(61)",	"(62)",	"(63)",	"(64)",
+	"(65)",	"(66)",	"(67)",	"(68)",
+	"(69)",	"(70)",	"(71)",	"(72)",
+	"(73)",	"(74)",	"(75)",	"(76)",
+	"(77)",	"(78)",	"(79)",	"(80)",
+	"(81)","(82)","(83)","(84)",
+	"(85)","(86)","(87)","(88)",
+	"(89)","(90)","(91)","(92)",
+	"(93)","(94)","(95)","(96)",
+	"(97)",	"(98)","(99)","(100)",
+	"(101)","(102)","(103)","(104)",
+	"(105)","(106)","(107)","(108)",
+	"(109)","(110)","(111)","(112)",
+	"(113)","(114)","(115)","(116)",
+	"(117)","(118)","(119)","(120)",
+	"(121)","(122)","(123)","(124)",
+	"(125)","(126)","(127)","(128)",
 
 	"POV1Up",	"POV1Right","POV1Down",	"POV1Left",		// First POV hat
 	"POV2Up",	"POV2Right","POV2Down",	"POV2Left",		// Second POV hat
@@ -147,9 +147,9 @@ const char *KeyNames[NUM_KEYS] =
 	"RStickRight","RStickLeft","RStickDown","RStickUp",
 
 	"DPadUp","DPadDown","DPadLeft","DPadRight",	// Gamepad buttons
-	"Pad_Start","Pad_Back","LThumb","RThumb",
-	"LShoulder","RShoulder","LTrigger","RTrigger",
-	"Pad_A", "Pad_B", "Pad_X", "Pad_Y"
+	"(Start)","(Back/Select)","LStick","RStick",
+	"(LB)","(RB)","(LT)","(RT)",
+	"(A)", "(B)", "(X)", "(Y)"
 };
 
 FKeyBindings Bindings;

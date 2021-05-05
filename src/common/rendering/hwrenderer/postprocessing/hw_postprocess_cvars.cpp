@@ -64,22 +64,22 @@ CUSTOM_CVAR(Int, gl_ssao, 2, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 		self = 0;
 }
 
-CUSTOM_CVAR(Int, gl_ssao_portals, 0, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
+CUSTOM_CVAR(Int, gl_ssao_portals, 1, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 {
 	if (self < 0)
 		self = 0;
 }
 
-CVAR(Float, gl_ssao_strength, 0.7f, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
+CVAR(Float, gl_ssao_strength, 1.75f, CVAR_ARCHIVE | CVAR_GLOBALCONFIG)
 CVAR(Int, gl_ssao_debug, 0, 0)
-CVAR(Float, gl_ssao_bias, 0.2f, CVAR_ARCHIVE)
-CVAR(Float, gl_ssao_radius, 80.0f, CVAR_ARCHIVE)
-CUSTOM_CVAR(Float, gl_ssao_blur, 16.0f, CVAR_ARCHIVE)
+CVAR(Float, gl_ssao_bias, 0.5f, CVAR_ARCHIVE)
+CVAR(Float, gl_ssao_radius, 17.5f, CVAR_ARCHIVE)
+CUSTOM_CVAR(Float, gl_ssao_blur, 8.0f, CVAR_ARCHIVE)
 {
 	if (self < 0.1f) self = 0.1f;
 }
 
-CUSTOM_CVAR(Float, gl_ssao_exponent, 1.8f, CVAR_ARCHIVE)
+CUSTOM_CVAR(Float, gl_ssao_exponent, 0.5f, CVAR_ARCHIVE)
 {
 	if (self < 0.1f) self = 0.1f;
 }

@@ -667,22 +667,31 @@ int FIWadManager::IdentifyVersion (TArray<FString> &wadfiles, const char *iwad, 
 	// If we still haven't found a suitable IWAD let's error out.
 	if (picks.Size() == 0)
 	{
-		I_FatalError ("Cannot find a game IWAD (doom.wad, doom2.wad, heretic.wad, etc.).\n"
-					  "Did you install " GAMENAME " properly? You can do either of the following:\n"
-					  "\n"
+		I_FatalError ("Whoops! No valid game data for " GAMENAME " could be located.\n"
+					  "It should have been included with the game download.\n"
 #if defined(_WIN32)
-					  "1. Place one or more of these wads in the same directory as " GAMENAME ".\n"
-					  "2. Edit your " GAMENAMELOWERCASE "-username.ini and add the directories of your iwads\n"
-					  "to the list beneath [IWADSearch.Directories]");
+					  "Please close this window, extract all files from the ZIP you\n"
+					  "downloaded, then try this again.\n\n"
+#else
+					  "On MacOS and Linux, things work stranger, and Xane's not familiar\n"
+					  "with non-Windows operating systems.\n\n"
+#endif
+
+#if defined(_WIN32)
+					  "1. Place a game data .ipk3, .pk3, or mod in this folder.\n"
+					  "2. Edit your GameSettings.ini and add the directories of your game\n"
+					  "data files to the list beneath [IWADSearch.Directories].\n\n");
 #elif defined(__APPLE__)
-					  "1. Place one or more of these wads in ~/Library/Application Support/" GAMENAMELOWERCASE "/\n"
-					  "2. Edit your ~/Library/Preferences/" GAMENAMELOWERCASE ".ini and add the directories\n"
-					  "of your iwads to the list beneath [IWADSearch.Directories]");
+					  "1. Place the game data in ~/Library/Application Support/" GAMENAMELOWERCASE "/\n"
+					  "2. Edit your ~/Library/Preferences/" GAMENAMELOWERCASE ".ini and add this\n"
+					  "directory to the list beneath [IWADSearch.Directories].\n\n");
 #else
 					  "1. Place one or more of these wads in ~/.config/" GAMENAMELOWERCASE "/.\n"
 					  "2. Edit your ~/.config/" GAMENAMELOWERCASE "/" GAMENAMELOWERCASE ".ini and add the directories of your\n"
-					  "iwads to the list beneath [IWADSearch.Directories]");
+					  "iwads to the list beneath [IWADSearch.Directories].(Apologies if this is messy.\n\n");
 #endif
+					  "If the game continues to refuse to start, you can contact Xane\n"
+					  "for help at xane@thex.site, but he only fully understands Windows.";
 	}
 	int pick = 0;
 

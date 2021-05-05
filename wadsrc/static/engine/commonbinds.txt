@@ -54,12 +54,12 @@ mwheelleft weapprev
 mwheelright weapnext
 
 //Mouse
-mouse1 +attack
-mouse2 +jump
-mouse3 +altattack
+LeftClick +attack
+RightClick +jump
+MiddleClick +altattack
 mouse4 +user2
 
-// Logitech Dual Action
+// Gamepad (meant for Logitech Dual Action)
 joy2 +jump
 joy3 invuse
 joy1 +use
@@ -75,21 +75,21 @@ pov1up weapprev
 joy10 menu_main
 joy9 togglemap
 
-// Xbox / PlayStation controllers
-pad_a +jump
-pad_b invuse
-pad_x +use
-pad_y weapnext
-rtrigger +attack
-ltrigger +altattack
-lshoulder +user2
-rshoulder +user3
+// Xbox (XInput) controllers
+(A) +jump
+(B) invuse
+(X) +use
+(Y) weapnext
+(RT) +attack
+(LT) +altattack
+(LB) +user2
+(RB) +user3
 dpadleft invprev
 dpadright invnext
 dpaddown weapnext
 dpadup weapprev
-pad_start menu_main
-pad_back togglemap
+(START) menu_main
+(BACK/SELECT) togglemap
 
 /* Default automap bindings */
 mapbind m am_setmark

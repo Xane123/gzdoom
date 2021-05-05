@@ -1699,9 +1699,11 @@ void FLevelLocals::Init()
 	foliagecolor = info->foliagecolor;	//[XANE]Color used by tree leaf clusters and grass.
 	leveltype = info->leveltype;
 	timeofday = info->timeofday;
-	overridetime = info->overridetime;
+	colorset = info->colorset;
+	skyset  = info->skyset;
 	radioscreenline = info->radioscreenline;
 	radiospeakertid = info->radiospeakertid;
+	specialstageno = info->specialstageno;
 	
 	Music = info->Music;
 	musicorder = info->musicorder;

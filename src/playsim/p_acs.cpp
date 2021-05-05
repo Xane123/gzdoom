@@ -527,10 +527,13 @@
 		LEVELINFO_MUSIC_ID,
 		LEVELINFO_FOLIAGE_COLOR,
 		LEVELINFO_TYPE,
-		LEVELINFO_TIMEOFDAY_ON,
+		LEVELINFO_TIMEOFDAY,
+		LEVELINFO_TOD_COLORSET,
+		LEVELINFO_TOD_SKYSET,
 		LEVELINFO_NEXTMAP_TIME,
 		LEVELINFO_RADIO_LINE,
-		LEVELINFO_SPEAKER_TID
+		LEVELINFO_SPEAKER_TID,
+		LEVELINFO_SPECSTG_NUMBER
 	};
 	enum {
 		PLAYERINFO_TEAM,
@@ -9770,25 +9773,27 @@ scriptwait:
 		case PCD_GETLEVELINFO:
 			switch (STACK(1))
 			{
-			case LEVELINFO_PAR_TIME:		STACK(1) = Level->partime;			break;
-			case LEVELINFO_SUCK_TIME:		STACK(1) = Level->sucktime;			break;
-			case LEVELINFO_CLUSTERNUM:		STACK(1) = Level->cluster;			break;
-			case LEVELINFO_LEVELNUM:		STACK(1) = Level->levelnum;			break;
-			case LEVELINFO_TOTAL_SECRETS:	STACK(1) = Level->total_secrets;	break;
-			case LEVELINFO_FOUND_SECRETS:	STACK(1) = Level->found_secrets;	break;
-			case LEVELINFO_TOTAL_ITEMS:		STACK(1) = Level->total_items;		break;
-			case LEVELINFO_FOUND_ITEMS:		STACK(1) = Level->found_items;		break;
-			case LEVELINFO_TOTAL_MONSTERS:	STACK(1) = Level->total_monsters;	break;
-			case LEVELINFO_KILLED_MONSTERS:	STACK(1) = Level->killed_monsters;	break;
-			case LEVELINFO_PARTNUM:			STACK(1) = Level->partnum;			break;	//[XANE]Level part number, for levels that come in multple parts.
-			case LEVELINFO_MUSIC_ID:		STACK(1) = Level->songid;			break;	//[XANE]Music ID that will play at the beginning of this level.
-			case LEVELINFO_FOLIAGE_COLOR:	STACK(1) = Level->foliagecolor;		break;	//[XANE]Color used by tree leaf clusters and grass.
-			case LEVELINFO_TYPE:			STACK(1) = Level->leveltype;		break;
-			case LEVELINFO_TIMEOFDAY_ON:	STACK(1) = Level->timeofday;		break;
-			case LEVELINFO_NEXTMAP_TIME:	STACK(1) = Level->overridetime;		break;
-			case LEVELINFO_RADIO_LINE:		STACK(1) = Level->radioscreenline;	break;
-			case LEVELINFO_SPEAKER_TID:		STACK(1) = Level->radiospeakertid;	break;
-			default:						STACK(1) = 0;						break;
+			case LEVELINFO_PAR_TIME:			STACK(1) = Level->partime;			break;
+			case LEVELINFO_SUCK_TIME:			STACK(1) = Level->sucktime;			break;
+			case LEVELINFO_CLUSTERNUM:			STACK(1) = Level->cluster;			break;
+			case LEVELINFO_LEVELNUM:			STACK(1) = Level->levelnum;			break;
+			case LEVELINFO_TOTAL_SECRETS:		STACK(1) = Level->total_secrets;	break;
+			case LEVELINFO_FOUND_SECRETS:		STACK(1) = Level->found_secrets;	break;
+			case LEVELINFO_TOTAL_ITEMS:			STACK(1) = Level->total_items;		break;
+			case LEVELINFO_FOUND_ITEMS:			STACK(1) = Level->found_items;		break;
+			case LEVELINFO_TOTAL_MONSTERS:		STACK(1) = Level->total_monsters;	break;
+			case LEVELINFO_KILLED_MONSTERS:		STACK(1) = Level->killed_monsters;	break;
+			case LEVELINFO_PARTNUM:				STACK(1) = Level->partnum;			break;	//[XANE]Level part number, for levels that come in multple parts.
+			case LEVELINFO_MUSIC_ID:			STACK(1) = Level->songid;			break;	//[XANE]Music ID that will play at the beginning of this level.
+			case LEVELINFO_FOLIAGE_COLOR:		STACK(1) = Level->foliagecolor;		break;	//[XANE]Color used by tree leaf clusters and grass.
+			case LEVELINFO_TYPE:				STACK(1) = Level->leveltype;		break;
+			case LEVELINFO_TIMEOFDAY:			STACK(1) = Level->timeofday;		break;
+			case LEVELINFO_TOD_COLORSET:		STACK(1) = Level->colorset;			break;
+			case LEVELINFO_TOD_SKYSET:			STACK(1) = Level->skyset;			break;
+			case LEVELINFO_RADIO_LINE:			STACK(1) = Level->radioscreenline;	break;
+			case LEVELINFO_SPEAKER_TID:			STACK(1) = Level->radiospeakertid;	break;
+			case LEVELINFO_SPECSTG_NUMBER:		STACK(1) = Level->specialstageno;	break;
+			default:							STACK(1) = 0;						break;
 			}
 			break;
 

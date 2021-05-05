@@ -514,9 +514,11 @@ public:
 	int			foliagecolor;		// [XANE]Color used by tree leaf clusters and grass.
 	int			leveltype;
 	int			timeofday;
-	int			overridetime;
+	int			colorset;
+	int			skyset;
 	int			radioscreenline;
 	int			radiospeakertid;
+	int			specialstageno;
 	
 	int			lumpnum;
 	FString		LevelName;
