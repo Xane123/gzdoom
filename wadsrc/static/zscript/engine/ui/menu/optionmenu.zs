@@ -476,9 +476,10 @@ class OptionMenu : Menu
 			int cur_indent = mDesc.mItems[i].Draw(mDesc, y, indent, isSelected);
 			if (cur_indent >= 0 && isSelected && mDesc.mItems[i].Selectable())
 			{
-				if (((MenuTime() % 8) < 6) || GetCurrentMenu() != self)
+				if (((MenuTime() % 35) < 30) || GetCurrentMenu() != self)
 				{
-					DrawOptionText(cur_indent + 3 * CleanXfac_1, y, OptionMenuSettings.mFontColorSelection, "◄");
+					DrawConText(19, cur_indent + 3 * CleanXfac_1, y, "\x10");
+					//DrawOptionText(cur_indent + 3 * CleanXfac_1, y, OptionMenuSettings.mFontColorSelection, "-");
 				}
 			}
 			y += fontheight;

@@ -330,14 +330,14 @@ class Menu : Object native ui version("2.4")
 		menuDelegate.PlaySound(snd);
 	}
 	
-	deprecated("4.0") static void DrawConText (int color, int x, int y, String str)
+	static void DrawConText (int color, int x, int y, String str)	// [XANE] Who said the classic console font had to stop being used?
 	{
 		screen.DrawText (ConFont, color, x, y, str, DTA_CellX, 8 * CleanXfac, DTA_CellY, 8 * CleanYfac);
 	}
 	
 	static Font OptionFont()
 	{
-		return NewSmallFont;
+		return SmallFont;
 	}
 	
 	static int OptionHeight() 

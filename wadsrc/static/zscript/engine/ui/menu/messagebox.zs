@@ -131,9 +131,9 @@ class MessageBoxMenu : Menu
 
 			if (messageSelection >= 0)
 			{
-				if ((MenuTime() % 8) < 6)
+				if ((MenuTime() % 35) < 30)
 				{
-					screen.DrawText(arrowFont, OptionMenuSettings.mFontColorSelection,
+					screen.DrawText(arrowFont, 19,
 						destWidth/2 - 11, y + fontheight * messageSelection, selector, DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true);
 				}
 			}

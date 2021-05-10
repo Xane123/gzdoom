@@ -69,7 +69,7 @@ class OptionMenuItem : MenuItemBase
 	
 	int CursorSpace()
 	{
-		return (14 * CleanXfac_1);
+		return (48 * CleanXfac_1);
 	}
 	
 	override bool Selectable()
