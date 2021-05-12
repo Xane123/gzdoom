@@ -478,7 +478,7 @@ class OptionMenu : Menu
 			{
 				if (((MenuTime() % 35) < 30) || GetCurrentMenu() != self)
 				{
-					DrawConText(19, cur_indent + 3 * CleanXfac_1, y, "\x10");
+					DrawConText(19, cur_indent + 3 * CleanXfac_1, y, "\xd");
 					//DrawOptionText(cur_indent + 3 * CleanXfac_1, y, OptionMenuSettings.mFontColorSelection, "-");
 				}
 			}

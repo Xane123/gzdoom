@@ -82,7 +82,7 @@ class MessageBoxMenu : Menu
 			arrowFont = ConFont;
 			destWidth = CleanWidth;
 			destHeight = CleanHeight;
-			selector = "\xd";
+			selector = "\xb";
 		}
 
 		int mr1 = destWidth/2 + 10 + textFont.StringWidth(Stringtable.Localize("$TXT_YES"));
